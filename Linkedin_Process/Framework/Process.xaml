@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
@@ -65,6 +65,14 @@
       <x:String>UiPath.OCR.Activities</x:String>
       <x:String>UiPath.OCR.Contracts.Activities</x:String>
       <x:String>System.Numerics</x:String>
+      <x:String>UiPath.Semantic.Activities</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.Word</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+      <x:String>UiPath.Word.Activities</x:String>
+      <x:String>UiPath.Activities.System.Text</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -135,215 +143,276 @@
       <AssemblyReference>UiPath.OCR.Contracts</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1980.0000000000002,3166.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="945.6000000000001,616" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="JobOffersFilePath" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="550.4,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
-    <Sequence DisplayName="Navigate to job offer page" sap:VirtualizedContainerService.HintSize="550.4,2813.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
-      <Sequence.Variables>
-        <Variable x:TypeArguments="upr:ILocalResource" Name="JobOffersFile" />
-        <Variable x:TypeArguments="x:String" Name="JobOffersFilePath" />
-        <Variable x:TypeArguments="sd:DataTable" Name="JobOffersDT" />
-      </Sequence.Variables>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <Assign DisplayName="Assign JobOffers file local path" sap:VirtualizedContainerService.HintSize="516.8,113.6" sap2010:WorkflowViewState.IdRef="Assign_1">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[JobOffersFilePath]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String">["Data/Temp/"+in_TransactionItem.SpecificContent("FileName").ToString]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <ucas:DownloadStorageFile TimeoutMS="{x:Null}" Destination="[JobOffersFilePath]" DisplayName="Download JobOffers File" sap:VirtualizedContainerService.HintSize="516.8,166.4" sap2010:WorkflowViewState.IdRef="DownloadStorageFile_1" Path="[in_TransactionItem.SpecificContent(&quot;FileName&quot;).ToString]" Result="[JobOffersFile]" StorageBucketName="Linkedin" />
-      <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[JobOffersDT]" DisplayName="Read JobOffers workbook" sap:VirtualizedContainerService.HintSize="516.8,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Offers" WorkbookPath="[JobOffersFilePath]" />
-      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[JobOffersDT]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="516.8,1976" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
-        <ui:ForEachRow.Body>
-          <ActivityAction x:TypeArguments="sd:DataRow">
-            <ActivityAction.Argument>
-              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="JobOffer" />
-            </ActivityAction.Argument>
-            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="483.2,1778.4" sap2010:WorkflowViewState.IdRef="Sequence_10">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: Nueva pestaña" sap:VirtualizedContainerService.HintSize="449.6,1670.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="6fceb391-52df-4928-8045-e0a37271c9e5" Version="V2">
-                <uix:NApplicationCard.Body>
-                  <ActivityAction x:TypeArguments="x:Object">
-                    <ActivityAction.Argument>
-                      <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
-                    </ActivityAction.Argument>
-                    <Sequence DisplayName="Get all JobOffer Information" sap:VirtualizedContainerService.HintSize="416,1381.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <uix:NGetText ContinueOnError="True" DisplayName="Get Text 'On-site'" sap:VirtualizedContainerService.HintSize="382.4,189.6" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="6fceb391-52df-4928-8045-e0a37271c9e5" TextString="[JobOffer(&quot;WorkType&quot;)]" Version="V4">
-                        <uix:NGetText.Target>
-                          <uix:TargetAnchorable BrowserURL="https://www.linkedin.com/jobs/view/4041963627/?alternateChannel=search&amp;eBP=NON_CHARGEABLE_CHANNEL&amp;refId=7mCBECrA8EbRv09PYNjTJw%3D%3D&amp;trackingId=cfu8dJ76NXZE41FOMLt2hA%3D%3D&amp;trk=flagship3_search_srp_jobs" CVScreenId="57de09df-c9ee-4030-93ec-4a522d996e78" CvTextArea="651, 479, 60, 16" CvType="AnyWordGroup" DesignTimeRectangle="664, 318, 59, 23" DesignTimeScaleFactor="1.25" ElementType="Text" FuzzySelectorArgument="&lt;webctrl type='' isleaf='1' tag='SPAN' class='' /&gt;" Guid="bab82ddb-08ad-46cc-80fb-accefd15be85" ImageBase64="" InformativeScreenshot="8226234a106d4bba7e3f075203d0c2bf.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*LinkedIn' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
-                            <uix:TargetAnchorable.Anchors>
-                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
-                                <uix:Target CVScreenId="57de09df-c9ee-4030-93ec-4a522d996e78" CvElementArea="610, 470, 35, 31" CvType="Icon" DesignTimeRectangle="616, 317, 25, 23" ElementType="Icon" FuzzySelectorArgument="&lt;webctrl type='' tag='path' class='' aaname='' /&gt;" Guid="ecb0321d-2322-4948-81f8-7996b6abee97" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAB0AAAAbCAYAAACAyoQSAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAFFSURBVEhL7ZS9ioNAFIX3aa0s1EbIg9hYWKfzBwufQBBrxbyBFgGt/As3HMncJTiosONusfnggM6cuV/j+EV/wEe6ous6yrKM4jimMAzfgjXsoXOEQ9KiKMgwDNI0bTPooLvHrnSapkNCEXRxZotdaV3XPPB6vdI4jq+db7CGPdHDmS12pbfbjYeVZflaXYM90cOZLVhaVdXqA0E8z+NheJZ1kCM9OABLsSgOnRU4wEd6SlZS/FVkRZWBA7A0TVNpUWXgACy93++k67q0rCKYDQdg6TAMywW3bVt66CfBTNxROABLoyiiIAjo8XhQ0zRLSUUwa55n8n1/cQCWiq/XsixyHGd5VxHMMk1zmY13sJKemX8sTZJEWlQZOABL8zyXFlUGDsDSvu9PuaMil8tlcQCWgrZtyXVdpXLMwkzMFrxJfweiJydqG9YdF8dLAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, CV" />
-                              </scg:List>
-                            </uix:TargetAnchorable.Anchors>
-                          </uix:TargetAnchorable>
-                        </uix:NGetText.Target>
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                      </uix:NGetText>
-                      <uix:NGetText ContinueOnError="True" DisplayName="Get Text 'Full-time'" sap:VirtualizedContainerService.HintSize="382.4,189.6" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="6fceb391-52df-4928-8045-e0a37271c9e5" TextString="[JobOffer(&quot;ContractType&quot;)]" Version="V4">
-                        <uix:NGetText.Target>
-                          <uix:TargetAnchorable BrowserURL="https://www.linkedin.com/jobs/view/4041963627/?alternateChannel=search&amp;eBP=NON_CHARGEABLE_CHANNEL&amp;refId=7mCBECrA8EbRv09PYNjTJw%3D%3D&amp;trackingId=cfu8dJ76NXZE41FOMLt2hA%3D%3D&amp;trk=flagship3_search_srp_jobs" CVScreenId="9cfc51ea-cc7a-4c36-b259-03e1a8a509b0" CvElementArea="721, 472, 94, 30" CvTextArea="732, 479, 70, 17" CvTextArgument="Full-time" CvType="Button" DesignTimeRectangle="756, 318, 69, 23" DesignTimeScaleFactor="1.25" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='SPAN' type='' class='' /&gt;" Guid="697fd17b-f9b4-48c9-bcbe-8c5e19bc28c0" ImageBase64="" InformativeScreenshot="cadf2a3be1baaca04e177564f936508e.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*LinkedIn' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
-                            <uix:TargetAnchorable.Anchors>
-                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
-                                <uix:Target CVScreenId="9cfc51ea-cc7a-4c36-b259-03e1a8a509b0" CvElementArea="610, 470, 35, 31" CvType="Icon" DesignTimeRectangle="614, 315, 30, 30" ElementType="Icon" FuzzySelectorArgument="&lt;webctrl class='mercado-match' type='' tag='svg' aaname='            ' /&gt;" Guid="b11f7996-f2cd-4de4-b7e4-c56e34ddd2c6" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACIAAAAiCAYAAAA6RwvCAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAFlSURBVFhH7ZS9joJAFEb3aakslIbEB6GxsKYDjAVPQGKoNfIGUpBABSq5m2/iuNl7ZzdDdshScJIvEeb+nALng2bCIsJZRDijRdq2pdPpRMfjkdI0/Ra8wxlqxjJK5Hw+03q9Js/zfg1qUDsGa5HH42EloYNa9NhiLXK73d5Loiii+/3+OvkC73Cm69Bji7VIWZbvBZfL5fVWgjNdhx5bhMj1ehUfIbLf798L8NtUg9jUYQdHiKBQD5oq2MFZRDjzFcHtaGp2GezgCJE8z43NLoMdHCFS1zWtVivjABfBbOzgCJG+79WlFASBcdBfgpm4Q7CDI0QOhwMlSULDMFBVVarRRTDr+XxSHMdqB0eI6H+N7/sUhqF6dhHM2mw2ajaeOT+KTJlFhMdKJMsyY7PLYAdHiBRFYWx2GezgCJGu6ya5Q3S2263awREioGka2u12ToUwCzMx24RR5D9YRDiLCGcmIkSf6OvqTdQVfG8AAAAASUVORK5CYII=" SearchSteps="FuzzySelector, CV" />
-                              </scg:List>
-                            </uix:TargetAnchorable.Anchors>
-                          </uix:TargetAnchorable>
-                        </uix:NGetText.Target>
-                      </uix:NGetText>
-                      <uix:NGetText DisplayName="Get Text 'About the job Primary S…'" sap:VirtualizedContainerService.HintSize="382.4,189.6" sap2010:WorkflowViewState.IdRef="NGetText_3" ScopeIdentifier="6fceb391-52df-4928-8045-e0a37271c9e5" TextString="[JobOffer(&quot;JobOfferDetail&quot;)]" Version="V4">
-                        <uix:NGetText.Target>
-                          <uix:TargetAnchorable BrowserURL="https://www.linkedin.com/jobs/view/4041963627/?alternateChannel=search&amp;eBP=NON_CHARGEABLE_CHANNEL&amp;refId=7mCBECrA8EbRv09PYNjTJw%3D%3D&amp;trackingId=cfu8dJ76NXZE41FOMLt2hA%3D%3D&amp;trk=flagship3_search_srp_jobs" DesignTimeRectangle="614, 545, 945, 872" DesignTimeScaleFactor="1.25" FuzzySelectorArgument="&lt;webctrl id='job-details' tag='DIV' type='' class='jobs-box__html-content jobs-description-content__text t-14 t-normal&amp;#xA;              jobs-description-content__text--stretch' aaname='                                      ' /&gt;" Guid="0cd01c92-c8c4-49d6-bded-dcf1bfcd91f4" ImageBase64="" InformativeScreenshot="0d6a42f98c8fe84d9f85a4ab3b90d354.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*LinkedIn' /&gt;" SearchSteps="FuzzySelector" Version="V4" Visibility="Interactive" />
-                        </uix:NGetText.Target>
-                      </uix:NGetText>
-                      <uix:NGetText ContinueOnError="True" DisplayName="Get Text 'Requirements added by t…'" sap:VirtualizedContainerService.HintSize="382.4,189.6" sap2010:WorkflowViewState.IdRef="NGetText_12" ScopeIdentifier="6fceb391-52df-4928-8045-e0a37271c9e5" TextString="[JobOffer(&quot;SkillsRequired&quot;)]" Version="V4">
-                        <uix:NGetText.Target>
-                          <uix:TargetAnchorable BrowserURL="https://www.linkedin.com/jobs/view/4041963627/?alternateChannel=search&amp;eBP=NON_CHARGEABLE_CHANNEL&amp;refId=7mCBECrA8EbRv09PYNjTJw%3D%3D&amp;trackingId=cfu8dJ76NXZE41FOMLt2hA%3D%3D&amp;trk=flagship3_search_srp_jobs" DesignTimeRectangle="614, 513, 945, 29" DesignTimeScaleFactor="1.25" ElementType="List" FuzzySelectorArgument="&lt;webctrl parentid='how-you-match-card-container' tag='UL' type='' class='' aaname='                                                                 ' /&gt;" Guid="4cd0379c-f025-4ebc-8310-45cb46241633" ImageBase64="" InformativeScreenshot="703a764e75bdf6602e72df0c8b3bd8d4.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='* | LinkedIn' /&gt;" SearchSteps="FuzzySelector" Version="V4" Visibility="Interactive">
-                            <uix:TargetAnchorable.Anchors>
-                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
-                                <uix:Target CVScreenId="41283660-e88e-4410-87a6-8795085c9d41" CvTextArea="612, 662, 350, 23" CvTextArgument="Requirements added by the job poster" CvType="Text" DesignTimeRectangle="614, 473, 945, 30" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='how-you-match-card-container' tag='H3' type='' class='t-16 t-bold' aaname='                 Requirements added by the job poster               ' check:innerText='Requirements added by the job poster' /&gt;" Guid="a233f6be-7cbf-4d98-8247-16586c98bc34" SearchSteps="FuzzySelector, CV" />
-                              </scg:List>
-                            </uix:TargetAnchorable.Anchors>
-                          </uix:TargetAnchorable>
-                        </uix:NGetText.Target>
-                      </uix:NGetText>
-                      <uix:NGetText ContinueOnError="True" DisplayName="Get Text 'Skills added by the job…'" sap:VirtualizedContainerService.HintSize="382.4,189.6" sap2010:WorkflowViewState.IdRef="NGetText_8" ScopeIdentifier="6fceb391-52df-4928-8045-e0a37271c9e5" TextString="[JobOffer(&quot;SkillsOn&quot;)]" Version="V4">
-                        <uix:NGetText.Target>
-                          <uix:TargetAnchorable BrowserURL="https://www.linkedin.com/jobs/view/4041963627/?alternateChannel=search&amp;eBP=NON_CHARGEABLE_CHANNEL&amp;refId=7mCBECrA8EbRv09PYNjTJw%3D%3D&amp;trackingId=cfu8dJ76NXZE41FOMLt2hA%3D%3D&amp;trk=flagship3_search_srp_jobs" DesignTimeRectangle="614, 603, 945, 70" DesignTimeScaleFactor="1.25" FuzzySelectorArgument="&lt;webctrl type='' parentid='how-you-match-card-container' tag='DIV' class='job-details-how-you-match__skills-item-wrapper display-flex flex-row pt4' aaname='                     ' /&gt;" Guid="88997f1e-aacc-46cb-9d4b-1fe31b6e1603" ImageBase64="" InformativeScreenshot="79f56397fdca1872578b4c016bc6d888.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*| LinkedIn' /&gt;" SearchSteps="FuzzySelector" Version="V4" Visibility="Interactive">
-                            <uix:TargetAnchorable.Anchors>
-                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
-                                <uix:Target CVScreenId="aa99e394-9303-4b79-9f1e-2f4113b291e0" CvTextArea="612, 801, 272, 23" CvTextArgument="Skills added by the job poster" CvType="Text" DesignTimeRectangle="614, 573, 945, 30" ElementType="Text" FuzzySelectorArgument="&lt;webctrl type='' parentid='how-you-match-card-container' tag='H3' class='t-16 t-bold' aaname='Skills added by the job poster' check:innerText='Skills added by the job poster' /&gt;" Guid="823ec7a7-e1c0-4040-a0e4-c8bbd3b42ba2" SearchSteps="FuzzySelector, CV" />
-                              </scg:List>
-                            </uix:TargetAnchorable.Anchors>
-                          </uix:TargetAnchorable>
-                        </uix:NGetText.Target>
-                      </uix:NGetText>
-                      <uix:NGetText ContinueOnError="True" DisplayName="Get Text 'Skills associated with …'" sap:VirtualizedContainerService.HintSize="382.4,189.6" sap2010:WorkflowViewState.IdRef="NGetText_9" ScopeIdentifier="6fceb391-52df-4928-8045-e0a37271c9e5" TextString="[JobOffer(&quot;SkillsMissing&quot;)]" Version="V4">
-                        <uix:NGetText.Target>
-                          <uix:TargetAnchorable BrowserURL="https://www.linkedin.com/jobs/view/4042222956/?eBP=NON_CHARGEABLE_CHANNEL&amp;refId=PFCZLb%2BxOwPTWwN7P0Z%2BSA%3D%3D&amp;trackingId=eN9ebnm04N3QT1OkX6FucQ%3D%3D&amp;trk=flagship3_search_srp_jobs" DesignTimeRectangle="614, 673, 945, 70" DesignTimeScaleFactor="1.25" FuzzySelectorArgument="&lt;webctrl type='' class='job-details-how-you-match__skills-item-wrapper display-flex flex-row pt4' parentid='how-you-match-card-container' tag='DIV' aaname='                     ' /&gt;" Guid="4414f621-1f17-4c30-9471-3abb85d7c87b" ImageBase64="" InformativeScreenshot="91581cbae4d1df40c55f2b2bc397fa31.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*| LinkedIn' /&gt;" SearchSteps="FuzzySelector" Version="V4" Visibility="Interactive">
-                            <uix:TargetAnchorable.Anchors>
-                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
-                                <uix:Target CVScreenId="1795c831-2e5b-41d2-ad0c-59da1b1bcb10" CvTextArea="612, 455, 270, 22" CvTextArgument="Skills added by the job poster" CvType="Text" DesignTimeRectangle="614, 573, 945, 30" ElementType="Text" FuzzySelectorArgument="&lt;webctrl type='' tag='H3' class='t-16 t-bold' aaname='Skills added by the job poster' check:innerText='Skills added by the job poster' /&gt;" Guid="b4361607-92fd-4ed9-81d6-a43bcbcacbd2" SearchSteps="FuzzySelector, CV" />
-                              </scg:List>
-                            </uix:TargetAnchorable.Anchors>
-                          </uix:TargetAnchorable>
-                        </uix:NGetText.Target>
-                      </uix:NGetText>
-                      <uix:NGetText ContinueOnError="True" DisplayName="Get Text 'About the company'" sap:VirtualizedContainerService.HintSize="382.4,182.4" sap2010:WorkflowViewState.IdRef="NGetText_6" ScopeIdentifier="6fceb391-52df-4928-8045-e0a37271c9e5" TextString="[JobOffer(&quot;AboutCompany&quot;)]" Version="V4">
-                        <uix:NGetText.Target>
-                          <uix:TargetAnchorable BrowserURL="https://www.linkedin.com/jobs/view/4041202024/?alternateChannel=search&amp;refId=7mCBECrA8EbRv09PYNjTJw%3D%3D&amp;trackingId=PyTIViSA1OJqN7Yiuj26og%3D%3D&amp;trk=d_flagship3_search_srp_jobs" DesignTimeRectangle="614, 826, 945, 79" DesignTimeScaleFactor="1.25" FuzzySelectorArgument="&lt;webctrl type='' tabindex='-1' tag='DIV' class='KdGpWtKuUNpvwNLlAMEAaTyatebraaOnSFeWqtOs&amp;#xA;        inline-show-more-text--is-collapsed&amp;#xA;        inline-show-more-text--is-collapsed-with-line-clamp&amp;#xA;        &amp;#xA;        &amp;#xA;        ' /&gt;" Guid="5d7c339a-baba-4812-99f4-eef546e3f15c" ImageBase64="" InformativeScreenshot="7801e4dac38f655ab57994a6f4cb3577.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*LinkedIn' /&gt;" SearchSteps="FuzzySelector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Interactive">
-                            <uix:TargetAnchorable.Anchors>
-                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
-                                <uix:Target CVScreenId="ee677ef8-31de-4790-af24-7899d94a1c3a" CvTextArea="611, 486, 228, 27" CvTextArgument="About the company" CvType="Text" DesignTimeRectangle="614, 590, 945, 31" ElementType="Text" FuzzySelectorArgument="&lt;webctrl class='text-heading-large' type='' tag='H2' aaname='           About the company         ' check:innerText='About the company' /&gt;" Guid="513ddf4e-6fce-408a-92e0-84b78a26266d" SearchSteps="FuzzySelector, CV" />
-                              </scg:List>
-                            </uix:TargetAnchorable.Anchors>
-                          </uix:TargetAnchorable>
-                        </uix:NGetText.Target>
-                      </uix:NGetText>
-                    </Sequence>
-                  </ActivityAction>
-                </uix:NApplicationCard.Body>
-                <uix:NApplicationCard.TargetApp>
-                  <uix:TargetApp Area="-9, -9, 2598, 1038" BrowserType="Chrome" IconBase64="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" sap2010:WorkflowViewState.IdRef="TargetApp_1" InformativeScreenshot="6ed362c70f9f9c373dce0dd04db712c6.png" Selector="&lt;html app='chrome.exe' title='Nueva pestaña' /&gt;" Title="Nueva pestaña" Url="[JobOffer(&quot;URL Offer&quot;).ToString]" />
-                </uix:NApplicationCard.TargetApp>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-              </uix:NApplicationCard>
-              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="449.6,48" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-                <ui:CommentOut.Body>
-                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_14">
+    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="LinkedIn_NavigateToJobOfferPage - Invoke Workflow File (Modules\LinkedIn\LinkedIn_NavigateToJobOfferPage.xaml)" sap:VirtualizedContainerService.HintSize="416,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Modules\LinkedIn\LinkedIn_NavigateToJobOfferPage.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:String" x:Key="JobOffersFilePath">[JobOffersFilePath]</InOutArgument>
+        <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="483.2,108" sap2010:WorkflowViewState.IdRef="Sequence_22">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence DisplayName="Navigate to Chat GPT" sap:VirtualizedContainerService.HintSize="449.6,48" sap2010:WorkflowViewState.IdRef="Sequence_15">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="CVFilePath" />
+              <Variable x:TypeArguments="x:String" Name="PromptForChatGPT" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: ChatGPT" sap:VirtualizedContainerService.HintSize="449.6,1213.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="e4edc802-d4a4-45bc-8b4b-a7ba4a3e96a6" Version="V2">
+              <uix:NApplicationCard.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="416,964.8" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Name="strOutcomeFromChatGPT" />
+                      <Variable x:TypeArguments="scg:List(x:String)" Name="DataFiltered" />
+                    </Sequence.Variables>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <If Condition="[JobOffersDT.Rows.IndexOf(JobOffer) = 1]" sap:VirtualizedContainerService.HintSize="382.4,48" sap2010:WorkflowViewState.IdRef="If_1">
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Prompt into ChatGPT" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="382.4,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="Simulate" ScopeIdentifier="e4edc802-d4a4-45bc-8b4b-a7ba4a3e96a6" Text="[PromptForChatGPT]" Version="V4">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable BrowserURL="https://chatgpt.com/?model=auto" CVScreenId="debe4188-ba92-4803-b7b3-96a961096986" CvElementArea="981, 568, 963, 69" CvType="InputBox" DesignTimeRectangle="484, 575, 672, 30" DesignTimeScaleFactor="1.25" FuzzySelectorArgument="&lt;webctrl tag='P' type='' class='placeholder' aaname='' /&gt;" Guid="8b61615d-cfd0-4034-8000-92af742ae2f0" InformativeScreenshot="d649191bb81f2f8c77130165aac0811d.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='ChatGPT' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target DesignTimeRectangle="445, 577, 17, 25" ElementType="Icon" FuzzySelectorArgument="&lt;webctrl type='' tag='path' class='' aaname='' /&gt;" Guid="c1376d71-31a5-4afc-b40d-96c000d622cf" SearchSteps="FuzzySelector" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NTypeInto.Target>
+                      <uix:NTypeInto.VerifyOptions>
+                        <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                          <uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionTypeIntoOptions.Retry>
+                          <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        </uix:VerifyExecutionTypeIntoOptions>
+                      </uix:NTypeInto.VerifyOptions>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <If.Then>
-                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,89.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                    </uix:NTypeInto>
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="382.4,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,24.8" sap2010:WorkflowViewState.IdRef="Sequence_18">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ChatGPTUploadFile - Invoke Workflow File (Modules\ChatGPTUploadFile.xaml)" sap:VirtualizedContainerService.HintSize="382.4,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Modules\ChatGPTUploadFile.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">[JobOffersFilePath]</InArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                          </ui:InvokeWorkflowFile>
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ChatGPTUploadFile - Invoke Workflow File (Modules\ChatGPTUploadFile.xaml)" sap:VirtualizedContainerService.HintSize="382.4,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Modules\ChatGPTUploadFile.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">[CVFilePath]</InArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                          </ui:InvokeWorkflowFile>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Submit'" sap:VirtualizedContainerService.HintSize="382.4,216.8" sap2010:WorkflowViewState.IdRef="NClick_4" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e4edc802-d4a4-45bc-8b4b-a7ba4a3e96a6" Version="V4">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="https://chatgpt.com/?model=auto" CVScreenId="d571efd6-7af8-42c3-846c-032728c2617b" CvElementArea="1161, 645, 49, 49" CvTextArea="1175, 657, 18, 23" CvType="Icon" DesignTimeRectangle="1166, 650, 40, 40" DesignTimeScaleFactor="1.25" ElementType="Icon" FuzzySelectorArgument="&lt;webctrl type='' tag='svg' class='icon-2xl' aaname='' /&gt;" Guid="c248702f-a0ed-44fd-bea0-0e75e5d7c4c1" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAALJSURBVFhH7Ze9CuowGIYVdXHxBgS9AMHFK3D2Jhz9uQb1FvxbVBBBUBcnnb0I0cHB2cFBcJbv8PYkJbXpT9K0B+G88EKbNsnTNMn3JVWtVumX/B84bkcGbjabNJlM6HQ60f1+p/f7TZ/PxzKuUYZneAfvytpQsRZwo9Gg5XJJj8eDVIU6qIs2ZG0HWQm4Xq/TbrdjXUcX2kKbsr68HBp4MBhYv9i00CbalvUpcyhgk6PqJfQh6/vbgcBYMEkJfckYRPsCJwnLFQTtCZzENPCS3/SQAmMR/Gt5LUQXMLaZOHYDVYFBtuW5gE1MhcvlQtfrld3pSzY1HMCIPlF1OBwok8lQLpej4/HISvX1HREdwAiZUbTf7ymbzVIqlbIMaHxAFIFJZHQA6+QGXJvNxhpZDsuND8CH6ApMIqMNjExKV4BNp9MuWG58CN7RlZjl2cBI/3S0WCwccKVSyb4ul8uOZ6vVitVSE9hcwDpRbTabOUa21WrRaDSy78fjsVXG7/Eu6qhKjH42MBJtFc3ncxsE7na7Vvk3MNRutx3vqi5usLmAVYNFpVKxATqdDislGg6HdjkHhsSRrtVqrDScwOYCxpFGRev1morFIvX7fVbyV7IR5ur1elad7XbLSsIJbJGBvSSOMOBNSApsKn+IA1g6JVQXnZfiAJYuOlPJehzA0m1NN3B8Kw5gaeCIEppFxQEsDc1wlOSHyzSwZ/IDR00vIfw+DjydTlmpvnzTSxMJ/Pl8pnw+T4VCgW63GyvVl28CD5s4Ij2fT3q9XuxOX4FHJPjnDqHwTx3zuU1MDV3JpgK3JzBsKvqpSIxqMvsCw0lCB8HCgcBwEtPDbxqIDgUMYxHEsXugTa8FJnNoYBjbjMnRRluyrcvPSsDciD4ImTq5B+qg7ncEC2stYNHIpJA/YMEg0cYvxpEGxjXK8AzviFmXriMDJ+sq/QHcTYt0YTVQigAAAABJRU5ErkJggg==" InformativeScreenshot="b71fd499b8e32e66fc9d0f8f3d968287.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='ChatGPT' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                            </uix:NClick.Target>
+                            <uix:NClick.VerifyOptions>
+                              <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                                <uix:VerifyExecutionOptions.Retry>
+                                  <InArgument x:TypeArguments="x:Boolean" />
+                                </uix:VerifyExecutionOptions.Retry>
+                                <uix:VerifyExecutionOptions.Timeout>
+                                  <InArgument x:TypeArguments="x:Double" />
+                                </uix:VerifyExecutionOptions.Timeout>
+                              </uix:VerifyExecutionOptions>
+                            </uix:NClick.VerifyOptions>
+                          </uix:NClick>
                         </Sequence>
-                      </If.Then>
-                      <If.Else>
-                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89.6" sap2010:WorkflowViewState.IdRef="Sequence_13">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </Sequence>
-                      </If.Else>
-                    </If>
+                      </ui:CommentOut.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:CommentOut>
+                    <uix:NGetText DisplayName="Get Text 'Thank you for sharing t…'" sap:VirtualizedContainerService.HintSize="382.4,189.6" sap2010:WorkflowViewState.IdRef="NGetText_13" ScopeIdentifier="e4edc802-d4a4-45bc-8b4b-a7ba4a3e96a6" TextString="[strOutcomeFromChatGPT]" Version="V4">
+                      <uix:NGetText.Target>
+                        <uix:TargetAnchorable BrowserURL="https://chatgpt.com/g/g-cStsvQbjd-cv-writer-the-cv-expert/c/670870f3-5b54-800f-94c9-a45c52f10ec2" DesignTimeRectangle="1041, 270, 890, 3769" DesignTimeScaleFactor="1.25" FuzzySelectorArgument="&lt;webctrl type='' class='markdown prose w-full break-words dark:prose-invert dark' tag='DIV' aaname='' /&gt;" Guid="e02db825-ca87-451a-88cd-a4441846f6b1" ImageBase64="" InformativeScreenshot="02973b5fff43290c9351ee29f1300f3b.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*ChatGPT*' /&gt;" SearchSteps="FuzzySelector" Version="V4" Visibility="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="2">
+                              <uix:Target CVScreenId="bf8d8230-e88e-4f2a-9a35-f1a8e993ab20" DesignTimeRectangle="1041, 270, 890, 3832" FuzzySelectorArgument="&lt;webctrl type='' class='group/conversation-turn relative flex w-full min-w-0 flex-col agent-turn' tag='DIV' aaname='' /&gt;" Guid="2d737f0c-fd84-4c96-b87b-e523b6e6bba7" SearchSteps="FuzzySelector" />
+                              <uix:Target CVScreenId="e862ce33-ed48-4a53-b0bf-c4177b56b025" CvElementArea="966, 412, 49, 47" CvType="Icon" DesignTimeRectangle="964, 264, 53, 51" ElementType="Icon" Guid="8f1dc0ba-b79c-4174-86c5-fefa02cdc6bb" ImageBase64="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" SearchSteps="CV" TargetType="ComputerVisionBased" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NGetText.Target>
+                    </uix:NGetText>
+                    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim arrData = New List(Of String) From {}&#xA;Dim strTemp = io_OutcomeFromChatGPT.Split(&quot;Profile&quot;)(1)&#xA;arrData.Add(strTemp.Split(&quot;Technical Skills&quot;)(0))  &#xA;strTemp = strTemp.Split(&quot;Technical Skills&quot;)(1)&#xA;arrData.Add(strTemp.Split(&quot;Professional Experience&quot;)(0))&#xA;strTemp = strTemp.Split(&quot;Professional Experience&quot;)(1)&#xA;arrData.Add(strTemp.Split(&quot;Education &amp; Certifications&quot;)(0))&#xA;strTemp = strTemp.Split(&quot;Education &amp; Certifications&quot;)(1)&#xA;arrData.Add(strTemp.Split(&quot;Would you like &quot;)(0))&#xA;out_DataFiltered = arrData" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="382.4,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                      <ui:InvokeCode.Arguments>
+                        <InOutArgument x:TypeArguments="x:String" x:Key="io_OutcomeFromChatGPT">[strOutcomeFromChatGPT]</InOutArgument>
+                        <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_DataFiltered">[DataFiltered]</OutArgument>
+                      </ui:InvokeCode.Arguments>
+                    </ui:InvokeCode>
+                    <ui:WriteTextFile File="{x:Null}" DisplayName="Write Text File" FileName="Data/Output/textGPT.txt" sap:VirtualizedContainerService.HintSize="382.4,166.4" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[String.Join(Environment.NewLine+&quot;&quot;+Environment.NewLine, DataFiltered)]" />
+                    <ui:CopyFile ContinueOnError="{x:Null}" Destination="Data/Output/textGPT.docx" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="382.4,187.2" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="Data\Templates\CV.docx" />
+                    <p:WordApplicationScope SensitivityLabel="{x:Null}" DisplayName="Word Application Scope" FilePath="Data/Output/textGPT.docx" sap:VirtualizedContainerService.HintSize="382.4,49.6" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1" SensitivityOperation="None">
+                      <p:WordApplicationScope.Body>
+                        <ActivityAction x:TypeArguments="ui:WordDocument">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="416,24.8" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="433.6,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+                              <ui:CommentOut.Body>
+                                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,68.8" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <p:WordAppendText DisplayName="Append Text" sap:VirtualizedContainerService.HintSize="433.6,129.6" sap2010:WorkflowViewState.IdRef="WordAppendText_1" Text="[String.Join(Environment.NewLine, DataFiltered)]" />
+                                </Sequence>
+                              </ui:CommentOut.Body>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:CommentOut>
+                            <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Profile Description in Document" sap:VirtualizedContainerService.HintSize="433.6,196.8" sap2010:WorkflowViewState.IdRef="WordReplaceText_4" Replace="[DataFiltered(0)]" ReplaceAll="True" Search="%[Your Profile Description]" />
+                            <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Technical Skills in Document" sap:VirtualizedContainerService.HintSize="433.6,196.8" sap2010:WorkflowViewState.IdRef="WordReplaceText_3" Replace="[DataFiltered(1)]" ReplaceAll="True" Search="%[Your Technical Skills]" />
+                            <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Professional Experience in Document" sap:VirtualizedContainerService.HintSize="433.6,196.8" sap2010:WorkflowViewState.IdRef="WordReplaceText_2" Replace="[DataFiltered(2)]" ReplaceAll="True" Search="%[Your Professional Experience]" />
+                            <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Education &amp; Certifications in Document" sap:VirtualizedContainerService.HintSize="433.6,196.8" sap2010:WorkflowViewState.IdRef="WordReplaceText_1" Replace="[DataFiltered(3)]" ReplaceAll="True" Search="%[Your Education And Certifications]" />
+                            <p:WordExportToPdf DisplayName="Save Document as PDF" FilePath="Data/Output/textGPT.pdf" sap:VirtualizedContainerService.HintSize="433.6,134.4" sap2010:WorkflowViewState.IdRef="WordExportToPdf_1" />
+                          </Sequence>
+                        </ActivityAction>
+                      </p:WordApplicationScope.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </p:WordApplicationScope>
                   </Sequence>
-                </ui:CommentOut.Body>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-              </ui:CommentOut>
-            </Sequence>
-          </ActivityAction>
-        </ui:ForEachRow.Body>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </ui:ForEachRow>
-      <ui:WriteRange AddHeaders="False" DataTable="[JobOffersDT]" DisplayName="Update JobOffers File " sap:VirtualizedContainerService.HintSize="516.8,148" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="Offers" StartingCell="A2" WorkbookPath="[JobOffersFilePath]" />
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="UploadStorageFile - Invoke Workflow File (Modules\UploadStorageFile.xaml)" sap:VirtualizedContainerService.HintSize="516.8,197.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" Level="Warn" LogEntry="WithArguments" LogExit="WithArguments" UnSafe="False" WorkflowFileName="Modules\UploadStorageFile.xaml">
-        <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="in_FileName">[String.Format("Complete_{0}", in_TransactionItem.SpecificContent("FileName").ToString)]</InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">[JobOffersFilePath]</InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_StorageBucketName">[in_Config("StorageBucketName").ToString]</InArgument>
-        </ui:InvokeWorkflowFile.Arguments>
-      </ui:InvokeWorkflowFile>
-    </Sequence>
-    <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="550.4,79.2" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//  Invoke steps of the process" />
+                </ActivityAction>
+              </uix:NApplicationCard.Body>
+              <uix:NApplicationCard.TargetApp>
+                <uix:TargetApp Area="-9, -9, 2598, 1038" BrowserType="Chrome" IconBase64="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" sap2010:WorkflowViewState.IdRef="TargetApp_1" InformativeScreenshot="ee847fc7f3bec3402e9a62780eaaa3d2.jpg" Selector="&lt;html app='chrome.exe' title='*ChatGPT*' /&gt;" Title="ChatGPT" Url="https://chatgpt.com/g/g-cStsvQbjd-cv-writer-the-cv-expert" />
+              </uix:NApplicationCard.TargetApp>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NApplicationCard>
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="449.6,48" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,136" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="382.4,76" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <TryCatch.Catches>
+                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="403.2,23.2" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ActivityAction x:TypeArguments="s:Exception">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                          </ActivityAction.Argument>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334.4,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[&quot;ChatGPT's process faulted: &quot; + exception.Message]" />
+                        </ActivityAction>
+                      </Catch>
+                    </TryCatch.Catches>
+                    <TryCatch.Finally>
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="UploadStorageFile - Invoke Workflow File (Modules\UploadStorageFile.xaml)" sap:VirtualizedContainerService.HintSize="335.2,174.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" Level="Warn" LogEntry="WithArguments" LogExit="WithArguments" UnSafe="False" WorkflowFileName="Modules\UploadStorageFile.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_FileName">[String.Format("Complete_{0}", in_TransactionItem.SpecificContent("FileName").ToString)]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">[JobOffersFilePath]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_StorageBucketName">[in_Config("StorageBucketName").ToString]</InArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                      </ui:InvokeWorkflowFile>
+                    </TryCatch.Finally>
+                  </TryCatch>
+                </Sequence>
+              </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CommentOut>
+          </Sequence>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="416,79.2" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//  Invoke steps of the process" />
   </Sequence>
 </Activity>
