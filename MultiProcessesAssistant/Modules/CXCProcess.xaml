@@ -111,35 +111,35 @@
       <AssemblyReference>System.Private.Xml</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CXCProcess" sap:VirtualizedContainerService.HintSize="1000,560.44" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="CXCProcess" sap:VirtualizedContainerService.HintSize="951.2,913.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Filling all template fields" sap:VirtualizedContainerService.HintSize="449.6,131.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Filling all template fields" sap:VirtualizedContainerService.HintSize="664.8,890.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <p:WordApplicationScope SensitivityLabel="{x:Null}" DisplayName="Word Application Scope" FilePath="[in_NewFilePath]" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1" SensitivityOperation="None">
+      <p:WordApplicationScope SensitivityLabel="{x:Null}" DisplayName="Word Application Scope" FilePath="[in_NewFilePath]" sap:VirtualizedContainerService.HintSize="631.2,807.2" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1" SensitivityOperation="None">
         <p:WordApplicationScope.Body>
           <ActivityAction x:TypeArguments="ui:WordDocument">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="416,24.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="597.6,634.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="AmountNetoText" />
               </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:ForEach x:TypeArguments="sd:DataRow" CurrentIndex="{x:Null}" DisplayName="For Each CurrentRow" sap:VirtualizedContainerService.HintSize="608,440" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_dtTemplateFields.Rows]">
+              <ui:ForEach x:TypeArguments="sd:DataRow" CurrentIndex="{x:Null}" DisplayName="For Each CurrentRow" sap:VirtualizedContainerService.HintSize="564,440" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_dtTemplateFields.Rows]">
                 <ui:ForEach.Body>
                   <ActivityAction x:TypeArguments="sd:DataRow">
                     <ActivityAction.Argument>
@@ -335,13 +335,13 @@
                   </ActivityAction>
                 </ui:ForEach.Body>
               </ui:ForEach>
-              <p:WordExportToPdf DisplayName="Save Document as PDF" FilePath="[in_NewFilePath.Replace(&quot;Temp&quot;, &quot;Output&quot;).Replace(&quot;.docx&quot;,&quot;pdf&quot;)]" sap:VirtualizedContainerService.HintSize="608,134.4" sap2010:WorkflowViewState.IdRef="WordExportToPdf_1" />
+              <p:WordExportToPdf DisplayName="Save Document as PDF" FilePath="[in_NewFilePath.Replace(&quot;Temp&quot;, &quot;Output&quot;).Replace(&quot;docx&quot;,&quot;pdf&quot;)]" sap:VirtualizedContainerService.HintSize="564,134.4" sap2010:WorkflowViewState.IdRef="WordExportToPdf_1" />
             </Sequence>
           </ActivityAction>
         </p:WordApplicationScope.Body>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>

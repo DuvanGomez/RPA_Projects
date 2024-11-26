@@ -2,7 +2,6 @@
   <x:Members>
     <x:Property Name="in_SheetName" Type="InArgument(x:String)" />
     <x:Property Name="in_FilePath" Type="InArgument(x:String)" />
-    <x:Property Name="in_ProcessDescription" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -214,7 +213,7 @@
       <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="read a file .xlsx y cargando cada fila en la cola de orchestrator&#xA;" DisplayName="Dispatcher" sap:VirtualizedContainerService.HintSize="1289.6000000000001,1364.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="read a file .xlsx y cargando cada fila en la cola de orchestrator&#xA;" DisplayName="Dispatcher" sap:VirtualizedContainerService.HintSize="945.6000000000001,792" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_NewItems" />
     </Sequence.Variables>
@@ -224,10 +223,10 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ReadRange Range="{x:Null}" WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[dt_NewItems]" DisplayName="Read data from .xlsx file into DataTable" sap:VirtualizedContainerService.HintSize="523.2,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="[in_SheetName]" WorkbookPath="[in_FilePath]" />
-    <ui:AddDataColumn x:TypeArguments="x:String" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="ProcessDescription" DataTable="[dt_NewItems]" DefaultValue="[in_SheetName]" DisplayName="Add ProcessDescription Data Column" sap:VirtualizedContainerService.HintSize="523.2,220" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_2" />
-    <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" Column="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" AutoIncrement="True" ColumnName="Timestamp" DataTable="[dt_NewItems]" DefaultValue="[Now.ToString(&quot;yyyyMMddHHmm&quot;)]" DisplayName="Add Timestamp Data  Column" sap:VirtualizedContainerService.HintSize="523.2,220" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_4" />
-    <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[in_ProcessDescription]" sap:VirtualizedContainerService.HintSize="523.2,737.6" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+    <ui:ReadRange Range="{x:Null}" WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[dt_NewItems]" DisplayName="Read data from .xlsx file into DataTable" sap:VirtualizedContainerService.HintSize="496.8,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="[in_SheetName]" WorkbookPath="[in_FilePath]" />
+    <ui:AddDataColumn x:TypeArguments="x:String" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="ProcessDescription" DataTable="[dt_NewItems]" DefaultValue="[in_SheetName]" DisplayName="Add ProcessDescription Data Column" sap:VirtualizedContainerService.HintSize="496.8,220" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_2" />
+    <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" Column="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" AutoIncrement="True" ColumnName="Timestamp" DataTable="[dt_NewItems]" DefaultValue="[Now.ToString(&quot;yyyyMMddHHmm&quot;)]" DisplayName="Add Timestamp Data  Column" sap:VirtualizedContainerService.HintSize="496.8,220" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_4" />
+    <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[in_SheetName]" sap:VirtualizedContainerService.HintSize="496.8,164.8" sap2010:WorkflowViewState.IdRef="Switch`1_2">
       <Switch.Default>
         <ui:BulkAddQueueItems TimeoutMS="{x:Null}" ContinueOnError="False" DisplayName="Bulk Add Queue Items" sap:VirtualizedContainerService.HintSize="334.4,195.2" sap2010:WorkflowViewState.IdRef="BulkAddQueueItems_2" QueueItemsDataTable="[dt_NewItems]" QueueName="MultiProcessesAsistant" />
       </Switch.Default>
