@@ -18,6 +18,23 @@ namespace MultiprocessesAssistant
         }
 
         /// <summary>
+        /// Invokes the Tests/ProcessTestCase.xaml
+        /// </summary>
+        public void ProcessTestCase(System.Collections.Generic.IDictionary<string, object> cXC_DynamicData)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\ProcessTestCase.xaml", new Dictionary<string, object>{{"cXC_DynamicData", cXC_DynamicData}}, default, default, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Tests/ProcessTestCase.xaml
+        /// </summary>
+		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
+        public void ProcessTestCase(System.Collections.Generic.IDictionary<string, object> cXC_DynamicData, System.Boolean isolated)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\ProcessTestCase.xaml", new Dictionary<string, object>{{"cXC_DynamicData", cXC_DynamicData}}, default, isolated, default, GetAssemblyName());
+        }
+
+        /// <summary>
         /// Invokes the Modules/DataTest/SyntheticTestData.xaml
         /// </summary>
         public void SyntheticTestData()
@@ -32,6 +49,57 @@ namespace MultiprocessesAssistant
         public void SyntheticTestData(System.Boolean isolated)
         {
             var result = _services.WorkflowInvocationService.RunWorkflow(@"Modules\DataTest\SyntheticTestData.xaml", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Tests/WorkflowTestCaseTemplate.xaml
+        /// </summary>
+        public void WorkflowTestCaseTemplate()
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\WorkflowTestCaseTemplate.xaml", new Dictionary<string, object>{}, default, default, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Tests/WorkflowTestCaseTemplate.xaml
+        /// </summary>
+		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
+        public void WorkflowTestCaseTemplate(System.Boolean isolated)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\WorkflowTestCaseTemplate.xaml", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Tests/MainTestCase.xaml
+        /// </summary>
+        public void MainTestCase()
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\MainTestCase.xaml", new Dictionary<string, object>{}, default, default, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Tests/MainTestCase.xaml
+        /// </summary>
+		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
+        public void MainTestCase(System.Boolean isolated)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\MainTestCase.xaml", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Modules/CXCProcess.xaml
+        /// </summary>
+        public void CXCProcess(string in_NewFilePath, System.Data.DataTable in_dtTemplateFields, System.Collections.Generic.Dictionary<string, object> in_dictTransactionItemData)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Modules\CXCProcess.xaml", new Dictionary<string, object>{{"in_NewFilePath", in_NewFilePath}, {"in_dtTemplateFields", in_dtTemplateFields}, {"in_dictTransactionItemData", in_dictTransactionItemData}}, default, default, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Modules/CXCProcess.xaml
+        /// </summary>
+		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
+        public void CXCProcess(string in_NewFilePath, System.Data.DataTable in_dtTemplateFields, System.Collections.Generic.Dictionary<string, object> in_dictTransactionItemData, System.Boolean isolated)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Modules\CXCProcess.xaml", new Dictionary<string, object>{{"in_NewFilePath", in_NewFilePath}, {"in_dtTemplateFields", in_dtTemplateFields}, {"in_dictTransactionItemData", in_dictTransactionItemData}}, default, isolated, default, GetAssemblyName());
         }
 
         /// <summary>
@@ -69,93 +137,6 @@ namespace MultiprocessesAssistant
         }
 
         /// <summary>
-        /// Invokes the Modules/CXCProcess.xaml
-        /// </summary>
-        public void CXCProcess(string in_NewFilePath, System.Data.DataTable in_dtTemplateFields, System.Collections.Generic.Dictionary<string, object> in_dictTransactionItemData)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Modules\CXCProcess.xaml", new Dictionary<string, object>{{"in_NewFilePath", in_NewFilePath}, {"in_dtTemplateFields", in_dtTemplateFields}, {"in_dictTransactionItemData", in_dictTransactionItemData}}, default, default, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Modules/CXCProcess.xaml
-        /// </summary>
-		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
-        public void CXCProcess(string in_NewFilePath, System.Data.DataTable in_dtTemplateFields, System.Collections.Generic.Dictionary<string, object> in_dictTransactionItemData, System.Boolean isolated)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Modules\CXCProcess.xaml", new Dictionary<string, object>{{"in_NewFilePath", in_NewFilePath}, {"in_dtTemplateFields", in_dtTemplateFields}, {"in_dictTransactionItemData", in_dictTransactionItemData}}, default, isolated, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Modules/ConvertNumberToText.xaml
-        /// </summary>
-        public string ConvertNumberToText(int in_AmountNeto)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Modules\ConvertNumberToText.xaml", new Dictionary<string, object>{{"in_AmountNeto", in_AmountNeto}}, default, default, default, GetAssemblyName());
-            return (string)result["out_AmountNetoText"];
-        }
-
-        /// <summary>
-        /// Invokes the Modules/ConvertNumberToText.xaml
-        /// </summary>
-		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
-        public string ConvertNumberToText(int in_AmountNeto, System.Boolean isolated)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Modules\ConvertNumberToText.xaml", new Dictionary<string, object>{{"in_AmountNeto", in_AmountNeto}}, default, isolated, default, GetAssemblyName());
-            return (string)result["out_AmountNetoText"];
-        }
-
-        /// <summary>
-        /// Invokes the test_AdvanceDataManipulation.xaml
-        /// </summary>
-        public void test_AdvanceDataManipulation()
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"test_AdvanceDataManipulation.xaml", new Dictionary<string, object>{}, default, default, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the test_AdvanceDataManipulation.xaml
-        /// </summary>
-		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
-        public void test_AdvanceDataManipulation(System.Boolean isolated)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"test_AdvanceDataManipulation.xaml", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Tests/WorkflowTestCaseTemplate.xaml
-        /// </summary>
-        public void WorkflowTestCaseTemplate()
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\WorkflowTestCaseTemplate.xaml", new Dictionary<string, object>{}, default, default, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Tests/WorkflowTestCaseTemplate.xaml
-        /// </summary>
-		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
-        public void WorkflowTestCaseTemplate(System.Boolean isolated)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\WorkflowTestCaseTemplate.xaml", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Tests/GetTransactionDataTestCase.xaml
-        /// </summary>
-        public void GetTransactionDataTestCase()
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\GetTransactionDataTestCase.xaml", new Dictionary<string, object>{}, default, default, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Tests/GetTransactionDataTestCase.xaml
-        /// </summary>
-		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
-        public void GetTransactionDataTestCase(System.Boolean isolated)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\GetTransactionDataTestCase.xaml", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
-        }
-
-        /// <summary>
         /// Invokes the Modules/CXCProcess - Copy (1).xaml
         /// </summary>
         public void CXCProcess___Copy__1_(string in_NewFilePath, UiPath.Core.QueueItem in_TransactionItem, System.Data.DataTable in_dtTemplateFields, System.Collections.Generic.Dictionary<string, object> in_dictTransactionItemData)
@@ -187,6 +168,95 @@ namespace MultiprocessesAssistant
         public void ConvertNumberToText_TestCase(System.Boolean isolated)
         {
             var result = _services.WorkflowInvocationService.RunWorkflow(@"Modules\ConvertNumberToText_TestCase.xaml", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Mocks/Modules/ConvertNumberToText_mock.xaml
+        /// </summary>
+        public string ConvertNumberToText_mock(int in_AmountNeto)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Mocks\Modules\ConvertNumberToText_mock.xaml", new Dictionary<string, object>{{"in_AmountNeto", in_AmountNeto}}, default, default, default, GetAssemblyName());
+            return (string)result["out_AmountNetoText"];
+        }
+
+        /// <summary>
+        /// Invokes the Mocks/Modules/ConvertNumberToText_mock.xaml
+        /// </summary>
+		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
+        public string ConvertNumberToText_mock(int in_AmountNeto, System.Boolean isolated)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Mocks\Modules\ConvertNumberToText_mock.xaml", new Dictionary<string, object>{{"in_AmountNeto", in_AmountNeto}}, default, isolated, default, GetAssemblyName());
+            return (string)result["out_AmountNetoText"];
+        }
+
+        /// <summary>
+        /// Invokes the test_AdvanceDataManipulation.xaml
+        /// </summary>
+        public void test_AdvanceDataManipulation()
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"test_AdvanceDataManipulation.xaml", new Dictionary<string, object>{}, default, default, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the test_AdvanceDataManipulation.xaml
+        /// </summary>
+		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
+        public void test_AdvanceDataManipulation(System.Boolean isolated)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"test_AdvanceDataManipulation.xaml", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Tests/Dispatcher_TestCase.xaml
+        /// </summary>
+        public void Dispatcher_TestCase()
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\Dispatcher_TestCase.xaml", new Dictionary<string, object>{}, default, default, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Tests/Dispatcher_TestCase.xaml
+        /// </summary>
+		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
+        public void Dispatcher_TestCase(System.Boolean isolated)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\Dispatcher_TestCase.xaml", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Modules/Dispatcher.xaml
+        /// </summary>
+        public void Dispatcher(string in_SheetName, string in_FilePath)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Modules\Dispatcher.xaml", new Dictionary<string, object>{{"in_SheetName", in_SheetName}, {"in_FilePath", in_FilePath}}, default, default, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Modules/Dispatcher.xaml
+        /// </summary>
+		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
+        public void Dispatcher(string in_SheetName, string in_FilePath, System.Boolean isolated)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Modules\Dispatcher.xaml", new Dictionary<string, object>{{"in_SheetName", in_SheetName}, {"in_FilePath", in_FilePath}}, default, isolated, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Modules/ConvertNumberToText.xaml
+        /// </summary>
+        public string ConvertNumberToText(int in_AmountNeto)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Modules\ConvertNumberToText.xaml", new Dictionary<string, object>{{"in_AmountNeto", in_AmountNeto}}, default, default, default, GetAssemblyName());
+            return (string)result["out_AmountNetoText"];
+        }
+
+        /// <summary>
+        /// Invokes the Modules/ConvertNumberToText.xaml
+        /// </summary>
+		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
+        public string ConvertNumberToText(int in_AmountNeto, System.Boolean isolated)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Modules\ConvertNumberToText.xaml", new Dictionary<string, object>{{"in_AmountNeto", in_AmountNeto}}, default, isolated, default, GetAssemblyName());
+            return (string)result["out_AmountNetoText"];
         }
 
         /// <summary>
@@ -228,6 +298,23 @@ namespace MultiprocessesAssistant
         }
 
         /// <summary>
+        /// Invokes the Framework/CloseAllApplications.xaml
+        /// </summary>
+        public void CloseAllApplications()
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\CloseAllApplications.xaml", new Dictionary<string, object>{}, default, default, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Framework/CloseAllApplications.xaml
+        /// </summary>
+		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
+        public void CloseAllApplications(System.Boolean isolated)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\CloseAllApplications.xaml", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
+        }
+
+        /// <summary>
         /// Invokes the Tests/InitAllApplicationsTestCase.xaml
         /// </summary>
         public void InitAllApplicationsTestCase()
@@ -242,93 +329,6 @@ namespace MultiprocessesAssistant
         public void InitAllApplicationsTestCase(System.Boolean isolated)
         {
             var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\InitAllApplicationsTestCase.xaml", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Modules/Dispatcher.xaml
-        /// </summary>
-        public void Dispatcher(string in_SheetName, string in_FilePath)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Modules\Dispatcher.xaml", new Dictionary<string, object>{{"in_SheetName", in_SheetName}, {"in_FilePath", in_FilePath}}, default, default, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Modules/Dispatcher.xaml
-        /// </summary>
-		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
-        public void Dispatcher(string in_SheetName, string in_FilePath, System.Boolean isolated)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Modules\Dispatcher.xaml", new Dictionary<string, object>{{"in_SheetName", in_SheetName}, {"in_FilePath", in_FilePath}}, default, isolated, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Mocks/Modules/ConvertNumberToText_mock.xaml
-        /// </summary>
-        public string ConvertNumberToText_mock(int in_AmountNeto)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Mocks\Modules\ConvertNumberToText_mock.xaml", new Dictionary<string, object>{{"in_AmountNeto", in_AmountNeto}}, default, default, default, GetAssemblyName());
-            return (string)result["out_AmountNetoText"];
-        }
-
-        /// <summary>
-        /// Invokes the Mocks/Modules/ConvertNumberToText_mock.xaml
-        /// </summary>
-		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
-        public string ConvertNumberToText_mock(int in_AmountNeto, System.Boolean isolated)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Mocks\Modules\ConvertNumberToText_mock.xaml", new Dictionary<string, object>{{"in_AmountNeto", in_AmountNeto}}, default, isolated, default, GetAssemblyName());
-            return (string)result["out_AmountNetoText"];
-        }
-
-        /// <summary>
-        /// Invokes the Framework/Process.xaml
-        /// </summary>
-        public void Process(UiPath.Core.QueueItem in_TransactionItem, System.Collections.Generic.Dictionary<string, object> in_Config)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\Process.xaml", new Dictionary<string, object>{{"in_TransactionItem", in_TransactionItem}, {"in_Config", in_Config}}, default, default, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Framework/Process.xaml
-        /// </summary>
-		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
-        public void Process(UiPath.Core.QueueItem in_TransactionItem, System.Collections.Generic.Dictionary<string, object> in_Config, System.Boolean isolated)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\Process.xaml", new Dictionary<string, object>{{"in_TransactionItem", in_TransactionItem}, {"in_Config", in_Config}}, default, isolated, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Framework/InitAllApplications.xaml
-        /// </summary>
-        public void InitAllApplications(System.Collections.Generic.Dictionary<string, object> in_Config)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\InitAllApplications.xaml", new Dictionary<string, object>{{"in_Config", in_Config}}, default, default, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Framework/InitAllApplications.xaml
-        /// </summary>
-		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
-        public void InitAllApplications(System.Collections.Generic.Dictionary<string, object> in_Config, System.Boolean isolated)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\InitAllApplications.xaml", new Dictionary<string, object>{{"in_Config", in_Config}}, default, isolated, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Tests/MainTestCase.xaml
-        /// </summary>
-        public void MainTestCase()
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\MainTestCase.xaml", new Dictionary<string, object>{}, default, default, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Tests/MainTestCase.xaml
-        /// </summary>
-		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
-        public void MainTestCase(System.Boolean isolated)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\MainTestCase.xaml", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
         }
 
         /// <summary>
@@ -368,56 +368,88 @@ namespace MultiprocessesAssistant
         }
 
         /// <summary>
-        /// Invokes the Framework/GetTransactionData.xaml
+        /// Invokes the Framework/Process.xaml
         /// </summary>
-        public (UiPath.Core.QueueItem out_TransactionItem, string out_TransactionField1, string out_TransactionField2, string out_TransactionID, System.Data.DataTable io_dt_TransactionData) GetTransactionData(int in_TransactionNumber, System.Collections.Generic.Dictionary<string, object> in_Config, System.Data.DataTable io_dt_TransactionData)
+        public void Process(UiPath.Core.QueueItem in_TransactionItem, System.Collections.Generic.Dictionary<string, object> in_Config)
         {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\GetTransactionData.xaml", new Dictionary<string, object>{{"in_TransactionNumber", in_TransactionNumber}, {"in_Config", in_Config}, {"io_dt_TransactionData", io_dt_TransactionData}}, default, default, default, GetAssemblyName());
-            return ((UiPath.Core.QueueItem)result["out_TransactionItem"], (string)result["out_TransactionField1"], (string)result["out_TransactionField2"], (string)result["out_TransactionID"], (System.Data.DataTable)result["io_dt_TransactionData"]);
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\Process.xaml", new Dictionary<string, object>{{"in_TransactionItem", in_TransactionItem}, {"in_Config", in_Config}}, default, default, default, GetAssemblyName());
         }
 
         /// <summary>
-        /// Invokes the Framework/GetTransactionData.xaml
+        /// Invokes the Framework/Process.xaml
         /// </summary>
 		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
-        public (UiPath.Core.QueueItem out_TransactionItem, string out_TransactionField1, string out_TransactionField2, string out_TransactionID, System.Data.DataTable io_dt_TransactionData) GetTransactionData(int in_TransactionNumber, System.Collections.Generic.Dictionary<string, object> in_Config, System.Data.DataTable io_dt_TransactionData, System.Boolean isolated)
+        public void Process(UiPath.Core.QueueItem in_TransactionItem, System.Collections.Generic.Dictionary<string, object> in_Config, System.Boolean isolated)
         {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\GetTransactionData.xaml", new Dictionary<string, object>{{"in_TransactionNumber", in_TransactionNumber}, {"in_Config", in_Config}, {"io_dt_TransactionData", io_dt_TransactionData}}, default, isolated, default, GetAssemblyName());
-            return ((UiPath.Core.QueueItem)result["out_TransactionItem"], (string)result["out_TransactionField1"], (string)result["out_TransactionField2"], (string)result["out_TransactionID"], (System.Data.DataTable)result["io_dt_TransactionData"]);
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\Process.xaml", new Dictionary<string, object>{{"in_TransactionItem", in_TransactionItem}, {"in_Config", in_Config}}, default, isolated, default, GetAssemblyName());
         }
 
         /// <summary>
-        /// Invokes the Tests/ProcessTestCase.xaml
+        /// Invokes the Framework/KillAllProcesses.xaml
         /// </summary>
-        public void ProcessTestCase(System.Collections.Generic.IDictionary<string, object> cXC_DynamicData)
+        public void KillAllProcesses()
         {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\ProcessTestCase.xaml", new Dictionary<string, object>{{"cXC_DynamicData", cXC_DynamicData}}, default, default, default, GetAssemblyName());
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\KillAllProcesses.xaml", new Dictionary<string, object>{}, default, default, default, GetAssemblyName());
         }
 
         /// <summary>
-        /// Invokes the Tests/ProcessTestCase.xaml
-        /// </summary>
-		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
-        public void ProcessTestCase(System.Collections.Generic.IDictionary<string, object> cXC_DynamicData, System.Boolean isolated)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\ProcessTestCase.xaml", new Dictionary<string, object>{{"cXC_DynamicData", cXC_DynamicData}}, default, isolated, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Tests/Dispatcher_TestCase.xaml
-        /// </summary>
-        public void Dispatcher_TestCase()
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\Dispatcher_TestCase.xaml", new Dictionary<string, object>{}, default, default, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Tests/Dispatcher_TestCase.xaml
+        /// Invokes the Framework/KillAllProcesses.xaml
         /// </summary>
 		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
-        public void Dispatcher_TestCase(System.Boolean isolated)
+        public void KillAllProcesses(System.Boolean isolated)
         {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\Dispatcher_TestCase.xaml", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\KillAllProcesses.xaml", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Framework/InitAllApplications.xaml
+        /// </summary>
+        public void InitAllApplications(System.Collections.Generic.Dictionary<string, object> in_Config)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\InitAllApplications.xaml", new Dictionary<string, object>{{"in_Config", in_Config}}, default, default, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Framework/InitAllApplications.xaml
+        /// </summary>
+		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
+        public void InitAllApplications(System.Collections.Generic.Dictionary<string, object> in_Config, System.Boolean isolated)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\InitAllApplications.xaml", new Dictionary<string, object>{{"in_Config", in_Config}}, default, isolated, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Modules/CodedWorkflows/CodedWorkflowTest.cs
+        /// </summary>
+        public void CodedWorkflowTest()
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Modules\CodedWorkflows\CodedWorkflowTest.cs", new Dictionary<string, object>{}, default, default, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Modules/CodedWorkflows/CodedWorkflowTest.cs
+        /// </summary>
+		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
+        public void CodedWorkflowTest(System.Boolean isolated)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Modules\CodedWorkflows\CodedWorkflowTest.cs", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Tests/GetTransactionDataTestCase.xaml
+        /// </summary>
+        public void GetTransactionDataTestCase()
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\GetTransactionDataTestCase.xaml", new Dictionary<string, object>{}, default, default, default, GetAssemblyName());
+        }
+
+        /// <summary>
+        /// Invokes the Tests/GetTransactionDataTestCase.xaml
+        /// </summary>
+		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
+        public void GetTransactionDataTestCase(System.Boolean isolated)
+        {
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Tests\GetTransactionDataTestCase.xaml", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
         }
 
         /// <summary>
@@ -440,54 +472,22 @@ namespace MultiprocessesAssistant
         }
 
         /// <summary>
-        /// Invokes the Framework/KillAllProcesses.xaml
+        /// Invokes the Framework/GetTransactionData.xaml
         /// </summary>
-        public void KillAllProcesses()
+        public (UiPath.Core.QueueItem out_TransactionItem, string out_TransactionField1, string out_TransactionField2, string out_TransactionID, System.Data.DataTable io_dt_TransactionData) GetTransactionData(int in_TransactionNumber, System.Collections.Generic.Dictionary<string, object> in_Config, System.Data.DataTable io_dt_TransactionData)
         {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\KillAllProcesses.xaml", new Dictionary<string, object>{}, default, default, default, GetAssemblyName());
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\GetTransactionData.xaml", new Dictionary<string, object>{{"in_TransactionNumber", in_TransactionNumber}, {"in_Config", in_Config}, {"io_dt_TransactionData", io_dt_TransactionData}}, default, default, default, GetAssemblyName());
+            return ((UiPath.Core.QueueItem)result["out_TransactionItem"], (string)result["out_TransactionField1"], (string)result["out_TransactionField2"], (string)result["out_TransactionID"], (System.Data.DataTable)result["io_dt_TransactionData"]);
         }
 
         /// <summary>
-        /// Invokes the Framework/KillAllProcesses.xaml
+        /// Invokes the Framework/GetTransactionData.xaml
         /// </summary>
 		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
-        public void KillAllProcesses(System.Boolean isolated)
+        public (UiPath.Core.QueueItem out_TransactionItem, string out_TransactionField1, string out_TransactionField2, string out_TransactionID, System.Data.DataTable io_dt_TransactionData) GetTransactionData(int in_TransactionNumber, System.Collections.Generic.Dictionary<string, object> in_Config, System.Data.DataTable io_dt_TransactionData, System.Boolean isolated)
         {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\KillAllProcesses.xaml", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Framework/CloseAllApplications.xaml
-        /// </summary>
-        public void CloseAllApplications()
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\CloseAllApplications.xaml", new Dictionary<string, object>{}, default, default, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Framework/CloseAllApplications.xaml
-        /// </summary>
-		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
-        public void CloseAllApplications(System.Boolean isolated)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\CloseAllApplications.xaml", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Modules/CodedWorkflows/CodedWorkflowTest.cs
-        /// </summary>
-        public void CodedWorkflowTest()
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Modules\CodedWorkflows\CodedWorkflowTest.cs", new Dictionary<string, object>{}, default, default, default, GetAssemblyName());
-        }
-
-        /// <summary>
-        /// Invokes the Modules/CodedWorkflows/CodedWorkflowTest.cs
-        /// </summary>
-		/// <param name="isolated">Indicates whether to isolate executions (run them within a different process)</param>
-        public void CodedWorkflowTest(System.Boolean isolated)
-        {
-            var result = _services.WorkflowInvocationService.RunWorkflow(@"Modules\CodedWorkflows\CodedWorkflowTest.cs", new Dictionary<string, object>{}, default, isolated, default, GetAssemblyName());
+            var result = _services.WorkflowInvocationService.RunWorkflow(@"Framework\GetTransactionData.xaml", new Dictionary<string, object>{{"in_TransactionNumber", in_TransactionNumber}, {"in_Config", in_Config}, {"io_dt_TransactionData", io_dt_TransactionData}}, default, isolated, default, GetAssemblyName());
+            return ((UiPath.Core.QueueItem)result["out_TransactionItem"], (string)result["out_TransactionField1"], (string)result["out_TransactionField2"], (string)result["out_TransactionID"], (System.Data.DataTable)result["io_dt_TransactionData"]);
         }
 
         private string GetAssemblyName()
