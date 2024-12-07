@@ -1,5 +1,6 @@
 /Data/Temp/*.doc*
-/Data/Output/*.pdf
 /Data/Templates/Others/*
 
 *.log
+*.png
+*.pdf

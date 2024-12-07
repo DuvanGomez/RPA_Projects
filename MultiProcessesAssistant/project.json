@@ -8,6 +8,7 @@
     "UiPath.System.Activities": "[24.11.0-preview]",
     "UiPath.Testing.Activities": "[24.10.3]",
     "UiPath.UIAutomation.Activities": "[24.11.1-preview]",
+    "UiPath.WebAPI.Activities": "[1.21.1]",
     "UiPath.Word.Activities": "[1.20.2]"
   },
   "webServices": [],
@@ -73,8 +74,9 @@
         "fileName": "Tests\\MainTestCase.xaml"
       },
       {
-        "editingStatus": "InProgress",
+        "editingStatus": "Publishable",
         "testCaseId": "419affd2-c671-49ec-8ee6-365e940ce82b",
+        "dataVariationFilePath": ".variations\\CXC_DynamicData.json",
         "testCaseType": "TestCase",
         "executionTemplateType": "Local",
         "fileName": "Tests\\ProcessTestCase.xaml"
@@ -88,10 +90,31 @@
       },
       {
         "editingStatus": "InProgress",
+        "testCaseId": "e522d8c6-7b24-4fd1-8a7c-84a7182c57c9",
+        "dataVariationFilePath": ".variations\\CXC_DynamicData.json",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Tests\\CXCProcess_TestCase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
         "testCaseId": "084c2a27-9fc1-4680-9641-5b7e51733407",
         "testCaseType": "TestCase",
         "executionTemplateInvokeIsolated": false,
-        "fileName": "Modules\\Dispatcher_TestCase.xaml"
+        "fileName": "Tests\\Dispatcher_TestCase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "50d06e0f-bd74-4098-b9fe-7161a2508c8e",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Modules\\ConvertNumberToText_TestCase.xaml"
+      },
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "40e6eb62-8084-4f08-9573-4125b4ccb380",
+        "testCaseType": "TestCase",
+        "fileName": "Modules\\CodedWorkflows\\TestCase.cs"
       }
     ],
     "saveToCloud": false
@@ -101,6 +124,12 @@
     {
       "filePath": "Main.xaml",
       "uniqueId": "577673e6-9263-4372-bb8e-5cdfe550091e",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "Modules\\CodedWorkflows\\CodedWorkflowTest.cs",
+      "uniqueId": "7035afca-c62c-4cf7-9430-2a9c958f8c8c",
       "input": [],
       "output": []
     }
