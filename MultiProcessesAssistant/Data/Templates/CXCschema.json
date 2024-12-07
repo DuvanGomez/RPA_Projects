@@ -1,0 +1,29 @@
+{
+    "$schema": "https://json-schema.org/draft-04/schema",
+    "type": "object",
+    "properties" :{
+        "City": {"type": "string"},
+        "Date": {"type": "string"},
+        "CompanyName": {"type": "string"},
+        "CompanyNIT": {"type": "string"},
+        "UserName": {"type": "string"},
+        "UserIdType": {"type": "string"},
+        "UserId": {"type": "string"},
+        "UserCity": {"type": "string"},
+        "TotalAmountNeto": {"type": "string"},
+        "TotalAmountBruto": {"type": "string"},
+        "Currency": {"type": "string"},
+        "ConceptDescription": {"type": "string"},
+        "TotalHoursWorked": {"type": "string"},
+        "ProjectInitDate": {"type": "string"},
+        "ProjectEndDate": {"type": "string"},
+        "PrePaidAmount": {"type": "string"},
+        "BankName": {"type": "string"},
+        "TypeBankAccount": {"type": "string"},
+        "IdBankAccount": {"type": "string"}
+
+    }
+    
+     																	
+
+}

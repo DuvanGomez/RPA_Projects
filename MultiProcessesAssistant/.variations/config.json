@@ -1,0 +1,8 @@
+{
+  "dataVariationFileInfo": [
+    {
+      "filePath": ".variations\\CXC_DynamicData.json",
+      "dataVariationType": "TestDataQueue"
+    }
+  ]
+}

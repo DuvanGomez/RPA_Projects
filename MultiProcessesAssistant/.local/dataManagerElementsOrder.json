@@ -1,0 +1,264 @@
+{
+  "Workflows": [
+    {
+      "Path": null,
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Main.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "ShouldStop&Sequence_25",
+        "TransactionItem&StateMachine_1",
+        "SystemException&StateMachine_1",
+        "BusinessException&StateMachine_1",
+        "TransactionNumber&StateMachine_1",
+        "Config&StateMachine_1",
+        "RetryNumber&StateMachine_1",
+        "TransactionField2&StateMachine_1",
+        "TransactionField1&StateMachine_1",
+        "TransactionID&StateMachine_1",
+        "dt_TransactionData&StateMachine_1",
+        "ConsecutiveSystemExceptions&StateMachine_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_OrchestratorQueueName",
+        "in_OrchestratorQueueFolder",
+        "in_ProcessDescription",
+        "in_ExecuteDispatcher"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Modules/DataTest/SyntheticTestData.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "CXCDataTable&Sequence_1",
+        "IdBankAccount&Sequence_2",
+        "TypeBankAccount&Sequence_2",
+        "BankName&Sequence_2",
+        "PrePaidAmount&Sequence_2",
+        "ProjectEndDate&Sequence_2",
+        "ProjectInitDate&Sequence_2",
+        "TotalHoursWorked&Sequence_2",
+        "ConceptDescription&Sequence_2",
+        "TotalAmountBruto&Sequence_2",
+        "TotalAmountNeto&Sequence_2",
+        "UserCity&Sequence_2",
+        "UserIdNumber&Sequence_2",
+        "UserLastName&Sequence_2",
+        "UserFirstName&Sequence_2",
+        "CompanyID&Sequence_2",
+        "CompanyName&Sequence_2",
+        "CurrentDate&Sequence_2",
+        "Address&Sequence_2",
+        "Counter&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Modules/CXCProcess.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "AmountNetoText&Sequence_3"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_dictTransactionItemData",
+        "in_NewFilePath",
+        "in_dtTemplateFields"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Modules/Dispatcher.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "dt_NewItems&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_SheetName",
+        "in_FilePath"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Tests/Dispatcher_TestCase.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Out_TransactionItem&Sequence_4",
+        "Config&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Tests/InitAllSettingsTestCase.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Config&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/GetTransactionData.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [
+        "in_TransactionNumber",
+        "in_Config",
+        "out_TransactionItem",
+        "out_TransactionField1",
+        "out_TransactionField2",
+        "out_TransactionID",
+        "io_dt_TransactionData"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/Process.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "FilePath&Sequence_1",
+        "dt_FieldsPerTemplate&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_TransactionItem",
+        "in_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Modules/ConvertNumberToText.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [
+        "out_AmountNetoText",
+        "in_AmountNeto"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/InitAllSettings.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "dt_SettingsAndConstants&Sequence_5"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_ConfigFile",
+        "in_ConfigSheets",
+        "out_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Tests/ProcessTestCase.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "FilePath&Sequence_1",
+        "dt_FieldsPerTemplate&Sequence_1",
+        "Config&Sequence_1",
+        "TransactionItem&Sequence_1",
+        "TransactionNumber&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "cXC_DynamicData"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/CloseAllApplications.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Tests/CXCProcess_TestCase.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [
+        "cXC_DynamicData"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Modules/ConvertNumberToText_TestCase.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Mocks/Modules/ConvertNumberToText_mock.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [
+        "out_AmountNetoText",
+        "in_AmountNeto"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/KillAllProcesses.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/InitAllApplications.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [
+        "in_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "test_AdvanceDataManipulation.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Age&Sequence_12",
+        "JsonObj&Sequence_12",
+        "JsonText&Sequence_12",
+        "dt_EmployeeData&Sequence_11",
+        "dt_FilteredData&Sequence_11",
+        "FilteredDataStr&Sequence_11",
+        "AverageSalary&Sequence_11",
+        "Sum&Sequence_10",
+        "NumbersFiltered&Sequence_10",
+        "TourdeFranceWinners&Sequence_3",
+        "Numbers&Sequence_10",
+        "AllCountries&Sequence_2",
+        "TemporaryList&Sequence_2",
+        "WinnersCounts&Sequence_3"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    }
+  ]
+}

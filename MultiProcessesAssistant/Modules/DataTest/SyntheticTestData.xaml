@@ -1,0 +1,185 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SyntheticTestData" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="SyntheticTestData_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uta="clr-namespace:UiPath.Testing.Activities;assembly=UiPath.Testing.Activities" xmlns:utat="clr-namespace:UiPath.Testing.Activities.TestData;assembly=UiPath.Testing.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.Testing.Activities.TestData</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Testing.Enums</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.Testing.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>UiPath.Testing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="SyntheticTestData" sap:VirtualizedContainerService.HintSize="951.2,680" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="CXCDataTable" />
+      <Variable x:TypeArguments="x:Int32" Name="Counter" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:ReadRange Range="{x:Null}" WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[CXCDataTable]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="449.6,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="CXC" WorkbookPath="Data\Templates\InputTemplate.xlsx" />
+    <ui:InterruptibleWhile CurrentIndex="{x:Null}" DisplayName="While" sap:VirtualizedContainerService.HintSize="449.6,171.2" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+      <ui:InterruptibleWhile.Body>
+        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,24.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="Address" />
+            <Variable x:TypeArguments="s:DateTime" Name="CurrentDate" />
+            <Variable x:TypeArguments="x:String" Name="CompanyName" />
+            <Variable x:TypeArguments="x:Decimal" Name="CompanyID" />
+            <Variable x:TypeArguments="x:String" Name="UserFirstName" />
+            <Variable x:TypeArguments="x:String" Name="UserLastName" />
+            <Variable x:TypeArguments="x:Decimal" Name="UserIdNumber" />
+            <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="UserCity" />
+            <Variable x:TypeArguments="x:Decimal" Name="TotalAmountNeto" />
+            <Variable x:TypeArguments="x:Decimal" Name="TotalAmountBruto" />
+            <Variable x:TypeArguments="x:String" Name="ConceptDescription" />
+            <Variable x:TypeArguments="x:Decimal" Name="TotalHoursWorked" />
+            <Variable x:TypeArguments="s:DateTime" Name="ProjectInitDate" />
+            <Variable x:TypeArguments="s:DateTime" Name="ProjectEndDate" />
+            <Variable x:TypeArguments="x:Decimal" Name="PrePaidAmount" />
+            <Variable x:TypeArguments="x:String" Name="BankName" />
+            <Variable x:TypeArguments="x:String" Name="TypeBankAccount" />
+            <Variable x:TypeArguments="x:Decimal" Name="IdBankAccount" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <utat:Address AddressResult="[Address]" City="&lt;Random City&gt;" Country="&lt;Random Country&gt;" sap:VirtualizedContainerService.HintSize="433.6,226.4" sap2010:WorkflowViewState.IdRef="Address_1" />
+          <utat:RandomDate DisplayName="Random Current Date" sap:VirtualizedContainerService.HintSize="433.6,226.4" sap2010:WorkflowViewState.IdRef="RandomDate_1" MaxDate="2024-11-12" MinDate="2024-06-01" Output="[CurrentDate]" />
+          <utat:RandomString Case="CamelCase" DisplayName="Random CompanyName String" sap:VirtualizedContainerService.HintSize="433.6,225.6" sap2010:WorkflowViewState.IdRef="RandomString_1" Length="25" Output="[CompanyName]" />
+          <utat:RandomNumber Decimals="{x:Null}" DisplayName="Random CompanyID Number" sap:VirtualizedContainerService.HintSize="433.6,226.4" sap2010:WorkflowViewState.IdRef="RandomNumber_1" Max="99999999" Min="11111111" Output="[CompanyID]" />
+          <utat:GivenName DisplayName="Given Name" GivenNameResult="[UserFirstName]" sap:VirtualizedContainerService.HintSize="433.6,122.4" sap2010:WorkflowViewState.IdRef="GivenName_1" />
+          <utat:LastName DisplayName="Last Name" sap:VirtualizedContainerService.HintSize="433.6,122.4" sap2010:WorkflowViewState.IdRef="LastName_1" LastNameResult="[UserLastName]" />
+          <utat:RandomNumber Decimals="{x:Null}" DisplayName="Random UserId Number" sap:VirtualizedContainerService.HintSize="433.6,226.4" sap2010:WorkflowViewState.IdRef="RandomNumber_2" Max="9999999999" Min="1111111111" Output="[UserIdNumber]" />
+          <utat:Address AddressResult="[UserCity]" City="&lt;Random City&gt;" Country="&lt;Random Country&gt;" DisplayName="UserCity Address " sap:VirtualizedContainerService.HintSize="433.6,226.4" sap2010:WorkflowViewState.IdRef="Address_2" />
+          <utat:RandomNumber Decimals="{x:Null}" DisplayName="Random TotalAmountNeto Number" sap:VirtualizedContainerService.HintSize="433.6,226.4" sap2010:WorkflowViewState.IdRef="RandomNumber_3" Max="99999999" Min="100000" Output="[TotalAmountNeto]" />
+          <utat:RandomNumber Decimals="{x:Null}" DisplayName="Random TotalAmountBruto Number" sap:VirtualizedContainerService.HintSize="433.6,226.4" sap2010:WorkflowViewState.IdRef="RandomNumber_4" Max="99999999" Min="100000" Output="[TotalAmountBruto]" />
+          <utat:RandomString Case="CamelCase" DisplayName="Random ConceptDescription String" sap:VirtualizedContainerService.HintSize="433.6,225.6" sap2010:WorkflowViewState.IdRef="RandomString_3" Length="120" Output="[ConceptDescription]" />
+          <utat:RandomNumber Decimals="1" DisplayName="Random TotalHoursWorked Number" sap:VirtualizedContainerService.HintSize="433.6,226.4" sap2010:WorkflowViewState.IdRef="RandomNumber_5" Max="500" Min="1" Output="[TotalHoursWorked]" />
+          <utat:RandomDate DisplayName="Random Project Init Date" sap:VirtualizedContainerService.HintSize="433.6,226.4" sap2010:WorkflowViewState.IdRef="RandomDate_2" MaxDate="2024-11-12" MinDate="2024-01-01" Output="[ProjectInitDate]" />
+          <utat:RandomDate DisplayName="Random Project End Date" sap:VirtualizedContainerService.HintSize="433.6,226.4" sap2010:WorkflowViewState.IdRef="RandomDate_3" MaxDate="2024-11-12" MinDate="2024-01-01" Output="[ProjectEndDate]" />
+          <utat:RandomNumber Decimals="{x:Null}" DisplayName="Random PrePaidAmount Number" sap:VirtualizedContainerService.HintSize="433.6,226.4" sap2010:WorkflowViewState.IdRef="RandomNumber_6" Max="11000000" Min="0" Output="[PrePaidAmount]" />
+          <utat:RandomString Case="CamelCase" DisplayName="Random BankName String" sap:VirtualizedContainerService.HintSize="433.6,225.6" sap2010:WorkflowViewState.IdRef="RandomString_4" Length="20" Output="[BankName]" />
+          <utat:RandomString Case="CamelCase" DisplayName="Random TypeBankAccount String" sap:VirtualizedContainerService.HintSize="433.6,225.6" sap2010:WorkflowViewState.IdRef="RandomString_5" Length="10" Output="[TypeBankAccount]" />
+          <utat:RandomNumber Decimals="{x:Null}" DisplayName="Random IdBankAccount Number" sap:VirtualizedContainerService.HintSize="433.6,226.4" sap2010:WorkflowViewState.IdRef="RandomNumber_7" Max="999999999" Min="100000000" Output="[IdBankAccount]" />
+          <Assign sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[Counter]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">[Counter+1]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{ Address(&quot;City&quot;), CurrentDate.ToString(&quot;dd/MM/yyyy HH:mm:ss&quot;), CompanyName, CompanyID.ToString, String.Format(&quot;{0} {1}&quot;, UserFirstName, UserLastName), &quot;CC&quot;, UserIdNumber.ToString, UserCity(&quot;City&quot;), TotalAmountNeto.ToString, TotalAmountBruto.ToString, &quot;COP&quot;, ConceptDescription, TotalHoursWorked.ToString, ProjectInitDate.ToString(&quot;dd/MM/yyyy HH:mm:ss&quot;), ProjectEndDate.ToString(&quot;dd/MM/yyyy HH:mm:ss&quot;), PrePaidAmount.ToString, BankName, TypeBankAccount, IdBankAccount.ToString }]" DataTable="[CXCDataTable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="433.6,211.2" sap2010:WorkflowViewState.IdRef="AddDataRow_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:AddDataRow>
+        </Sequence>
+      </ui:InterruptibleWhile.Body>
+      <ui:InterruptibleWhile.Condition>
+        <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="Counter &lt; 30" />
+      </ui:InterruptibleWhile.Condition>
+    </ui:InterruptibleWhile>
+    <ui:WriteRange StartingCell="{x:Null}" WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[CXCDataTable]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="449.6,148" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="CXC" WorkbookPath="Data\Output\InputTestData.xlsx" />
+    <uta:BulkAddTestDataQueue ContinueOnError="{x:Null}" TimeoutMs="{x:Null}" DisplayName="Bulk Add Test Data Queue Items" sap:VirtualizedContainerService.HintSize="449.6,217.6" sap2010:WorkflowViewState.IdRef="BulkAddTestDataQueue_1" QueueItemsDataTable="[CXCDataTable]" QueueName="CXC_DynamicData" />
+  </Sequence>
+</Activity>

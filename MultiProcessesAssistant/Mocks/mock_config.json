@@ -1,0 +1,8 @@
+{
+  "mockedWorkflows": [
+    {
+      "mockFilePath": "Mocks\\Modules\\ConvertNumberToText_mock.xaml",
+      "sourceWorkflowPath": "Modules\\ConvertNumberToText.xaml"
+    }
+  ]
+}

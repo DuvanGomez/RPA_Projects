@@ -1,0 +1,6 @@
+/Data/Temp/*.doc*
+/Data/Templates/Others/*
+
+*.log
+*.png
+*.pdf

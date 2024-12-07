@@ -1,0 +1,141 @@
+{
+  "name": "MultiprocessesAssistant",
+  "projectId": "dc26bfe4-ad36-458a-b541-a376e1623911",
+  "description": "Robotic Enterprise Framework for multi proccess asistance for some task such as CXC creation, ideas, etc",
+  "main": "Main.xaml",
+  "dependencies": {
+    "UiPath.Excel.Activities": "[2.24.3]",
+    "UiPath.System.Activities": "[24.11.0-preview]",
+    "UiPath.Testing.Activities": "[24.10.3]",
+    "UiPath.UIAutomation.Activities": "[24.11.1-preview]",
+    "UiPath.WebAPI.Activities": "[1.21.1]",
+    "UiPath.Word.Activities": "[1.20.2]"
+  },
+  "webServices": [],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "24.10.6.0",
+  "projectVersion": "1.0.0",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "netFrameworkLazyLoading": false,
+    "isPausable": true,
+    "isAttended": false,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "workflowSerialization": "DataContract",
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": false,
+    "startsInPiP": false,
+    "mustRestoreAllDependencies": true,
+    "pipType": "ChildSession"
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": []
+    },
+    "fileInfoCollection": [
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "a93cf9d4-9bf6-4cf2-a996-4c5326c58363",
+        "testCaseType": "TestCase",
+        "executionTemplateType": "Local",
+        "fileName": "Tests\\GetTransactionDataTestCase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "8123d7e8-1bba-4793-be9e-9c166364801d",
+        "testCaseType": "TestCase",
+        "executionTemplateType": "Local",
+        "fileName": "Tests\\InitAllApplicationsTestCase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "51a3dc58-a318-45bf-8452-c39fca122047",
+        "testCaseType": "TestCase",
+        "executionTemplateType": "Local",
+        "fileName": "Tests\\InitAllSettingsTestCase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "0e01a4ee-130d-4e19-adb2-f19d4578e90b",
+        "testCaseType": "TestCase",
+        "executionTemplateType": "Local",
+        "fileName": "Tests\\MainTestCase.xaml"
+      },
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "419affd2-c671-49ec-8ee6-365e940ce82b",
+        "dataVariationFilePath": ".variations\\CXC_DynamicData.json",
+        "testCaseType": "TestCase",
+        "executionTemplateType": "Local",
+        "fileName": "Tests\\ProcessTestCase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "b65731b0-56b0-41a7-92c6-34f81a212004",
+        "testCaseType": "TestCase",
+        "executionTemplateType": "Local",
+        "fileName": "Tests\\WorkflowTestCaseTemplate.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "e522d8c6-7b24-4fd1-8a7c-84a7182c57c9",
+        "dataVariationFilePath": ".variations\\CXC_DynamicData.json",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Tests\\CXCProcess_TestCase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "084c2a27-9fc1-4680-9641-5b7e51733407",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Tests\\Dispatcher_TestCase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "50d06e0f-bd74-4098-b9fe-7161a2508c8e",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Modules\\ConvertNumberToText_TestCase.xaml"
+      },
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "40e6eb62-8084-4f08-9573-4125b4ccb380",
+        "testCaseType": "TestCase",
+        "fileName": "Modules\\CodedWorkflows\\TestCase.cs"
+      }
+    ],
+    "saveToCloud": false
+  },
+  "expressionLanguage": "VisualBasic",
+  "entryPoints": [
+    {
+      "filePath": "Main.xaml",
+      "uniqueId": "577673e6-9263-4372-bb8e-5cdfe550091e",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "Modules\\CodedWorkflows\\CodedWorkflowTest.cs",
+      "uniqueId": "7035afca-c62c-4cf7-9430-2a9c958f8c8c",
+      "input": [],
+      "output": []
+    }
+  ],
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {},
+  "targetFramework": "Windows"
+}
