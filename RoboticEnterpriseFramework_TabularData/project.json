@@ -1,21 +1,20 @@
-﻿{
-  "name": "REF_CleanUpEmail",
-  "projectId": "30d95052-3198-4fac-bda7-dd2018d564a2",
-  "description": "Robotic Enterprise Framework for clean up email and Google drive",
+{
+  "name": "RoboticEnterpriseFramework_TabularData",
+  "projectId": "ec4ffd7e-37cf-4256-8d4f-bba9b04aa064",
+  "description": "Robotic Enterprise Framework with tabular data",
   "main": "Main.xaml",
   "dependencies": {
-    "UiPath.Excel.Activities": "[2.24.0-preview]",
-    "UiPath.GSuite.Activities": "[2.6.24]",
+    "UiPath.Excel.Activities": "[2.24.1]",
     "UiPath.Mail.Activities": "[1.23.11]",
-    "UiPath.PDF.Activities": "[3.19.1]",
+    "UiPath.PDF.Activities": "[3.20.1]",
     "UiPath.System.Activities": "[24.11.0-preview]",
-    "UiPath.Testing.Activities": "[24.10.0]",
+    "UiPath.Testing.Activities": "[24.10.2-preview]",
     "UiPath.UIAutomation.Activities": "[24.11.1-preview]"
   },
   "webServices": [],
   "entitiesStores": [],
   "schemaVersion": "4.0",
-  "studioVersion": "24.10.4.0",
+  "studioVersion": "24.10.5.0",
   "projectVersion": "1.0.0",
   "runtimeOptions": {
     "autoDispose": false,
@@ -48,42 +47,42 @@
     "fileInfoCollection": [
       {
         "editingStatus": "InProgress",
-        "testCaseId": "71d18cf7-b56c-499f-b553-a1370896eaae",
+        "testCaseId": "7e9f303b-8113-410a-8201-9c190cf651e7",
         "testCaseType": "TestCase",
         "executionTemplateType": "Local",
         "fileName": "Tests\\GetTransactionDataTestCase.xaml"
       },
       {
         "editingStatus": "InProgress",
-        "testCaseId": "8adf96db-dd9a-4eea-aa29-81566b96f292",
+        "testCaseId": "c6ae04ec-b6fa-4c94-a0a4-9f2525da3091",
         "testCaseType": "TestCase",
         "executionTemplateType": "Local",
         "fileName": "Tests\\InitAllApplicationsTestCase.xaml"
       },
       {
         "editingStatus": "InProgress",
-        "testCaseId": "36144f10-740e-44d0-bd58-7b3f5790acb7",
+        "testCaseId": "36272ad6-0c9b-41cb-8be6-fd21f409eeca",
         "testCaseType": "TestCase",
         "executionTemplateType": "Local",
         "fileName": "Tests\\InitAllSettingsTestCase.xaml"
       },
       {
         "editingStatus": "InProgress",
-        "testCaseId": "e8b049ec-9c67-46b7-a50e-bc96e9fddb21",
+        "testCaseId": "c9aa3122-efc8-4db1-b217-e0e28315fd65",
         "testCaseType": "TestCase",
         "executionTemplateType": "Local",
         "fileName": "Tests\\MainTestCase.xaml"
       },
       {
         "editingStatus": "InProgress",
-        "testCaseId": "78706292-97f6-4c79-91df-19acade3c076",
+        "testCaseId": "45639937-a827-4f82-a9c0-a505206698f5",
         "testCaseType": "TestCase",
         "executionTemplateType": "Local",
         "fileName": "Tests\\ProcessTestCase.xaml"
       },
       {
         "editingStatus": "InProgress",
-        "testCaseId": "1cd69d3b-164b-4064-9956-8fa731354dde",
+        "testCaseId": "c282c181-12a2-410b-a889-8df1bb63ac57",
         "testCaseType": "TestCase",
         "executionTemplateType": "Local",
         "fileName": "Tests\\WorkflowTestCaseTemplate.xaml"
@@ -95,7 +94,7 @@
   "entryPoints": [
     {
       "filePath": "Main.xaml",
-      "uniqueId": "be19b1e1-0ae5-46be-9845-c42883a86c65",
+      "uniqueId": "7d198af7-e6e9-44a1-a31f-3526f4d3993c",
       "input": [],
       "output": []
     }
