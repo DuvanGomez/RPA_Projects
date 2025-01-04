@@ -30,11 +30,23 @@
       "DataSourceItems": null
     },
     {
-      "Name": "in_PerformDispatcher",
-      "DisplayName": "in_PerformDispatcher",
+      "Name": "in_ExecutePerformer",
+      "DisplayName": "in_ExecutePerformer",
       "Category": null,
       "Tooltip": null,
-      "Placeholder": null,
+      "Placeholder": "False",
+      "Widget": null,
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "in_ExecuteDispatcher",
+      "DisplayName": "in_ExecuteDispatcher",
+      "Category": null,
+      "Tooltip": null,
+      "Placeholder": "True",
       "Widget": null,
       "IsRequired": false,
       "IsPrincipal": true,
