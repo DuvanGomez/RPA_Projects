@@ -62,6 +62,7 @@
       <x:String>UiPath.OCR.Contracts</x:String>
       <x:String>UiPath.OCR.Contracts.Activities</x:String>
       <x:String>UiPath.Core.Activities.OCR.Engines</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -140,7 +141,7 @@
       <AssemblyReference>UiPath.OCR.Contracts</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Dispatcher" sap:VirtualizedContainerService.HintSize="777.9999999999999,1702" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Dispatcher" sap:VirtualizedContainerService.HintSize="943.9999999999999,1868" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="JobOffersFilePath" />
     </Sequence.Variables>
@@ -149,7 +150,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Read Linkedin" sap:VirtualizedContainerService.HintSize="552,1679.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Read Linkedin" sap:VirtualizedContainerService.HintSize="614.6666666666666,1845.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="ListUrlJobOffers" />
       </Sequence.Variables>
@@ -158,7 +159,7 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Assign DisplayName="Assign list joboffers links" sap:VirtualizedContainerService.HintSize="518,118" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign DisplayName="Assign list joboffers links" sap:VirtualizedContainerService.HintSize="580.6666666666666,118" sap2010:WorkflowViewState.IdRef="Assign_4">
         <Assign.To>
           <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[ListUrlJobOffers]</OutArgument>
         </Assign.To>
@@ -167,13 +168,13 @@
 {"Worldwide", "https://www.linkedin.com/jobs/search/?distance=25&amp;f_TPR=r86400&amp;geoId=92000000&amp;keywords={0}&amp;origin=JOB_SEARCH_PAGE_JOB_FILTER&amp;refresh=true&amp;sortBy=R&amp;spellCorrectionEnabled=true"}}]</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentText" sap:VirtualizedContainerService.HintSize="518,1478.6666666666667" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[in_Config(&quot;ListRoleName&quot;).ToString.Trim.Split(&quot;,&quot;)]">
+      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentText" sap:VirtualizedContainerService.HintSize="580.6666666666666,1644.6666666666667" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[in_Config(&quot;ListRoleName&quot;).ToString.Trim.Split(&quot;,&quot;)]">
         <ui:ForEach.Body>
           <ActivityAction x:TypeArguments="x:String">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="484,1340" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="546.6666666666666,1506" sap2010:WorkflowViewState.IdRef="Sequence_7">
               <Sequence.Variables>
                 <Variable x:TypeArguments="sd:DataTable" Name="ExtractJobInfoDataTable" />
               </Sequence.Variables>
@@ -183,16 +184,29 @@
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Assign DisplayName="Assign JobOffersFilePath" sap:VirtualizedContainerService.HintSize="450,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign DisplayName="Assign JobOffersFilePath" sap:VirtualizedContainerService.HintSize="512.6666666666666,57.333333333333336" sap2010:WorkflowViewState.IdRef="Assign_2">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[JobOffersFilePath]</OutArgument>
                 </Assign.To>
                 <Assign.Value>
                   <InArgument x:TypeArguments="x:String">[String.Format("Data/Temp/{0}_JobOffers_{1}.xlsx",currentText , Now.ToString("ddMMyyyyHH"))]</InArgument>
                 </Assign.Value>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
               </Assign>
-              <ui:CopyFile ContinueOnError="{x:Null}" Destination="[JobOffersFilePath]" DisplayName="Copy File JobOffer File" sap:VirtualizedContainerService.HintSize="450,191.33333333333334" sap2010:WorkflowViewState.IdRef="CopyFile_2" Overwrite="True" Path="Data/Templates/JobOffers.xlsx" />
-              <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each JobOfferLink_Key" sap:VirtualizedContainerService.HintSize="450,256" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[ListUrlJobOffers.Keys]">
+              <ui:CopyFile ContinueOnError="{x:Null}" Destination="[JobOffersFilePath]" DisplayName="Copy File JobOffer File" sap:VirtualizedContainerService.HintSize="512.6666666666666,57.333333333333336" sap2010:WorkflowViewState.IdRef="CopyFile_2" Overwrite="True" Path="Data/Templates/JobOffers.xlsx">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:CopyFile>
+              <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each JobOfferLink_Key" sap:VirtualizedContainerService.HintSize="512.6666666666666,256" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[ListUrlJobOffers.Keys]">
                 <ui:ForEach.Body>
                   <ActivityAction x:TypeArguments="x:String">
                     <ActivityAction.Argument>
@@ -205,20 +219,20 @@
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <uix:NApplicationCard AttachMode="ByInstance" CloseMode="IfOpenedByAppBrowser" DisplayName="Use Browser Chrome: Jobs | LinkedIn" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="IfNotOpen" ScopeGuid="a154dd65-6a74-4f72-abac-f3d90452b1df" Version="V2">
+                      <uix:NApplicationCard AttachMode="ByInstance" CloseMode="IfOpenedByAppBrowser" DisplayName="Use Browser Chrome: Jobs | LinkedIn" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="IfNotOpen" ScopeGuid="a154dd65-6a74-4f72-abac-f3d90452b1df" Version="V2" WindowResize="Maximize">
                         <uix:NApplicationCard.Body>
                           <ActivityAction x:TypeArguments="x:Object">
                             <ActivityAction.Argument>
                               <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                             </ActivityAction.Argument>
-                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="416,25.333333333333332" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="416,300" sap2010:WorkflowViewState.IdRef="Sequence_4">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <uix:NMouseScroll KeyModifiers="{x:Null}" Direction="Down" DisplayName="Mouse Scroll 'Jump to active job deta…'" sap:VirtualizedContainerService.HintSize="382.4,291.2" sap2010:WorkflowViewState.IdRef="NMouseScroll_2" InteractionMode="HardwareEvents" MovementUnits="10" ScopeIdentifier="a154dd65-6a74-4f72-abac-f3d90452b1df" Version="V4">
+                              <uix:NMouseScroll KeyModifiers="{x:Null}" ContinueOnError="True" DelayBefore="0.5" Direction="Down" DisplayName="Mouse Scroll 'Jump to active job deta…'" sap:VirtualizedContainerService.HintSize="382,57.333333333333336" sap2010:WorkflowViewState.IdRef="NMouseScroll_2" InteractionMode="DebuggerApi" MovementUnits="10" ScopeIdentifier="a154dd65-6a74-4f72-abac-f3d90452b1df" Version="V4">
                                 <uix:NMouseScroll.SearchedElement>
                                   <uix:SearchedElement>
                                     <uix:SearchedElement.Target>
@@ -232,13 +246,25 @@
                                 <uix:NMouseScroll.Target>
                                   <uix:TargetAnchorable BrowserURL="https://www.linkedin.com/jobs/search/?currentJobId=4110338454&amp;f_E=2&amp;f_TPR=r86400&amp;geoId=100876405&amp;keywords=robotic%20process%20automation&amp;origin=JOB_SEARCH_PAGE_JOB_FILTER&amp;refresh=true&amp;sortBy=R&amp;spellCorrectionEnabled=true" DesignTimeRectangle="79, 282, 503, 738" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;main&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='main' tag='DIV' /&gt;" Guid="c04ddba9-32ac-49d7-8d46-098f3e3b41d0" InformativeScreenshot="558c5c0327681148424358f8bf7a218e.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='(19) robotic process automation Jobs | LinkedIn' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
                                 </uix:NMouseScroll.Target>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
                               </uix:NMouseScroll>
-                              <uix:NExtractData ContinueOnError="True" DataTable="[ExtractJobInfoDataTable]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='Name Offer'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='URL Offer'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;true&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column2' Name='Location'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column3' Name='CompanyName'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column4' Name='Easy Apply'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column5' Name='PublishedTime'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataNextLink' /&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='li' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='fulltext' name2='Column1' attr2='href'&gt;&lt;webctrl tag='li' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='strong' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column2' attr='fulltext'&gt;&lt;webctrl tag='li' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='ul' idx='1' /&gt;&lt;webctrl tag='li' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column3' attr='fulltext'&gt;&lt;webctrl tag='li' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column4' attr='fulltext'&gt;&lt;webctrl tag='li' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='ul' idx='1' /&gt;&lt;webctrl tag='li' idx='2' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column5' attr='fulltext'&gt;&lt;webctrl tag='li' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='ul' idx='1' /&gt;&lt;webctrl tag='li' idx='1' /&gt;&lt;webctrl tag='time' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="382.4,182.4" sap2010:WorkflowViewState.IdRef="NExtractData_4" InteractionMode="Simulate" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="a154dd65-6a74-4f72-abac-f3d90452b1df" Version="V4">
+                              <uix:NExtractData ContinueOnError="True" DataTable="[ExtractJobInfoDataTable]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='true'&gt;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='Name Offer'&gt;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&lt;ValidationErrorMessage /&gt;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&lt;Format xsi:type='TextColumnFormat' /&gt;&lt;/Column&gt;&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='URL Offer'&gt;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&lt;ValidationErrorMessage /&gt;&lt;IsExtra&gt;true&lt;/IsExtra&gt;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&lt;Format xsi:type='TextColumnFormat' /&gt;&lt;/Column&gt;&lt;Column xsi:type='DataColumn' ReferenceName='Column2' Name='Location'&gt;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&lt;ValidationErrorMessage /&gt;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&lt;Format xsi:type='TextColumnFormat' /&gt;&lt;/Column&gt;&lt;Column xsi:type='DataColumn' ReferenceName='Column3' Name='CompanyName'&gt;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&lt;ValidationErrorMessage /&gt;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&lt;Format xsi:type='TextColumnFormat' /&gt;&lt;/Column&gt;&lt;Column xsi:type='DataColumn' ReferenceName='Column4' Name='Easy Apply'&gt;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&lt;ValidationErrorMessage /&gt;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&lt;Format xsi:type='TextColumnFormat' /&gt;&lt;/Column&gt;&lt;Column xsi:type='DataColumn' ReferenceName='Column5' Name='PublishedTime'&gt;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&lt;ValidationErrorMessage /&gt;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&lt;Format xsi:type='TextColumnFormat' /&gt;&lt;/Column&gt;&lt;Column xsi:type='DataColumn' ReferenceName='Column6' Name='RolName'&gt;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&lt;ValidationErrorMessage /&gt;&lt;IsExtra&gt;true&lt;/IsExtra&gt;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&lt;Format xsi:type='TextColumnFormat' /&gt;&lt;/Column&gt;&lt;Column xsi:type='DataNextLink' /&gt;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='li' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='fulltext' name2='Column1' attr2='href'&gt;&lt;webctrl tag='li' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='strong' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column2' attr='fulltext'&gt;&lt;webctrl tag='li' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='ul' idx='1' /&gt;&lt;webctrl tag='li' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column3' attr='fulltext'&gt;&lt;webctrl tag='li' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column4' attr='fulltext'&gt;&lt;webctrl tag='li' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='ul' idx='1' /&gt;&lt;webctrl tag='li' idx='2' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column5' attr='fulltext'&gt;&lt;webctrl tag='li' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='ul' idx='1' /&gt;&lt;webctrl tag='li' idx='1' /&gt;&lt;webctrl tag='time' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="382,182.66666666666666" sap2010:WorkflowViewState.IdRef="NExtractData_4" InteractionMode="Simulate" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="a154dd65-6a74-4f72-abac-f3d90452b1df" Version="V4">
                                 <uix:NExtractData.NextLink>
                                   <uix:TargetAnchorable BrowserURL="https://www.linkedin.com/jobs/search/?alertAction=viewjobs&amp;currentJobId=4041686481&amp;f_TPR=a1728182590-&amp;geoId=92000000&amp;keywords=uipath&amp;origin=JOB_ALERT_IN_APP_NOTIFICATION&amp;originToLandingJobPostings=4041686481&amp;savedSearchId=1742211219&amp;sortBy=R" CVScreenId="e7953c9f-d38b-408d-81e0-82953c5f2114" CvTextArea="904, 830, 11, 17" CvType="Text" DesignTimeRectangle="250, 851, 32, 32" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;webctrl aria-label='^Page [2-5]' tag='BUTTON' type='button' matching:aria-label='regex' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-label='^Page [3-5]' tag='BUTTON' type='button' class=''  matching:aria-label='regex' /&gt;" Guid="da876ae9-c3ff-4bd5-8fe0-3825a4227ffa" ImageBase64="" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*Jobs | LinkedIn' matching:title='fuzzy' fuzzylevel:title='0.6' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V4" WaitForReadyArgument="Interactive" />
                                 </uix:NExtractData.NextLink>
                                 <uix:NExtractData.Target>
-                                  <uix:TargetAnchorable BrowserURL="https://www.linkedin.com/jobs/search/?currentJobId=4115298840&amp;f_TPR=r604800&amp;geoId=100876405&amp;keywords=uipath&amp;origin=JOB_SEARCH_PAGE_JOB_FILTER&amp;refresh=true&amp;sortBy=R&amp;spellCorrectionEnabled=true" DesignTimeRectangle="79, -2379, 482, 3039" DesignTimeScaleFactor="1" ElementType="List" FullSelectorArgument="&lt;webctrl parentid='main' tag='UL' /&gt;" Guid="f34a21cf-c7e2-4bfb-b3bb-78c6c77e6454" InformativeScreenshot="44c34d40fff38ffa067fe8f51950ee36.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*LinkedIn' /&gt;" SearchSteps="Selector" Version="V4" WaitForReadyArgument="Interactive" />
+                                  <uix:TargetAnchorable BrowserURL="https://www.linkedin.com/jobs/search/?currentJobId=4115298840&amp;f_TPR=r604800&amp;geoId=100876405&amp;keywords=uipath&amp;origin=JOB_SEARCH_PAGE_JOB_FILTER&amp;refresh=true&amp;sortBy=R&amp;spellCorrectionEnabled=true" DesignTimeRectangle="79, -2379, 482, 3039" DesignTimeScaleFactor="1" ElementType="List" FullSelectorArgument="&lt;webctrl parentid='main' tag='UL' /&gt;" Guid="f34a21cf-c7e2-4bfb-b3bb-78c6c77e6454" InformativeScreenshot="44c34d40fff38ffa067fe8f51950ee36.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*LinkedIn' /&gt;" SearchSteps="Selector" Version="V4">
+                                    <uix:TargetAnchorable.WaitForReadyArgument>
+                                      <InArgument x:TypeArguments="uix:NWaitForReady">
+                                        <Literal x:TypeArguments="uix:NWaitForReady" sap2010:WorkflowViewState.IdRef="Literal`1_1" Value="Interactive" />
+                                      </InArgument>
+                                    </uix:TargetAnchorable.WaitForReadyArgument>
+                                  </uix:TargetAnchorable>
                                 </uix:NExtractData.Target>
                               </uix:NExtractData>
                             </Sequence>
@@ -264,36 +290,102 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:ForEach>
-              <Sequence DisplayName="Save data and clean temp file" sap:VirtualizedContainerService.HintSize="450,715.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence DisplayName="Save data and clean temp file" sap:VirtualizedContainerService.HintSize="512.6666666666666,1075.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="sd:DataTable" Name="dtFilteredData" />
+                  <Variable x:TypeArguments="sd:DataTable" Name="dtReportData" />
+                </Sequence.Variables>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:LogMessage DisplayName="Log Message Got all job offers" sap:VirtualizedContainerService.HintSize="416,57.333333333333336" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[String.Format(&quot;{1} job offers obtained for {0}&quot;, currentText, ExtractJobInfoDataTable.Rows.Count.ToString)]">
+                <ui:LogMessage DisplayName="Log Message Got all job offers" sap:VirtualizedContainerService.HintSize="478.6666666666667,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[String.Format(&quot;{1} job offers obtained for {0}&quot;, currentText, ExtractJobInfoDataTable.Rows.Count.ToString)]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:LogMessage>
+                <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="478.6666666666667,180" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+                  <ui:MultipleAssign.AssignOperations>
+                    <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="sd:DataTable">[dtFilteredData]</OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="sd:DataTable">[ExtractJobInfoDataTable.AsDataView.ToTable(True,{"Name Offer","CompanyName"})]</InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="sd:DataTable">[dtReportData]</OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="sd:DataTable">[ExtractJobInfoDataTable.Copy]</InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                    </scg:List>
+                  </ui:MultipleAssign.AssignOperations>
+                </ui:MultipleAssign>
+                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="478.6666666666667,57.333333333333336" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+                  <ui:CommentOut.Body>
+                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtFilteredData]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                        <ui:ForEachRow.Body>
+                          <ActivityAction x:TypeArguments="sd:DataRow">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,274" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[ExtractJobInfoDataTable.AsEnumerable.FirstOrDefault(Function(row) String.Join(&quot;&quot;, {row(&quot;Name Offer&quot;).ToString, row(&quot;CompanyName&quot;).ToString.Trim}).Equals(String.Join(&quot;&quot;,CurrentRow.ItemArray()))).ItemArray]" DataTable="[dtReportData]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="382,214" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEachRow.Body>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:ForEachRow>
+                    </Sequence>
+                  </ui:CommentOut.Body>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                </ui:LogMessage>
-                <ui:AppendRange DataTable="[ExtractJobInfoDataTable.AsDataView.ToTable(True,{&quot;Name Offer&quot;,&quot;URL Offer&quot;,&quot;Location&quot;,&quot;CompanyName&quot;,&quot;Easy Apply&quot;})]" DisplayName="Append  JobOffers report Workbook" sap:VirtualizedContainerService.HintSize="416,148" sap2010:WorkflowViewState.IdRef="AppendRange_1" SheetName="Offers" WorkbookPath="[JobOffersFilePath]" />
-                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="UploadStorageFile - Invoke Workflow File (Modules\UploadStorageFile.xaml)" sap:VirtualizedContainerService.HintSize="416,210" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" Level="Info" LogEntry="OnlyInvocation" LogExit="No" UnSafe="False" WorkflowFileName="Modules\UploadStorageFile.xaml">
+                </ui:CommentOut>
+                <ui:AppendRange DataTable="[dtReportData.AsDataView.ToTable(True,{&quot;Name Offer&quot;,&quot;URL Offer&quot;,&quot;Location&quot;,&quot;CompanyName&quot;,&quot;Easy Apply&quot;})]" DisplayName="Append  JobOffers report Workbook" sap:VirtualizedContainerService.HintSize="478.6666666666667,148" sap2010:WorkflowViewState.IdRef="AppendRange_3" SheetName="Offers" WorkbookPath="[JobOffersFilePath]" />
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="UploadStorageFile - Invoke Workflow File (Modules\UploadStorageFile.xaml)" sap:VirtualizedContainerService.HintSize="478.6666666666667,210" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" Level="Info" LogEntry="No" LogExit="OnlySuccessfulReturn" UnSafe="False" WorkflowFileName="Modules\UploadStorageFile.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
                     <InArgument x:TypeArguments="x:String" x:Key="in_FileName" />
                     <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">[JobOffersFilePath]</InArgument>
                     <InArgument x:TypeArguments="x:String" x:Key="in_StorageBucketName">[in_Config("StorageBucketName").ToString]</InArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
-                <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="416,217.6" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="Linkedin_Queue" Reference="[JobOffersFilePath.Split(&quot;/&quot;c).Last+Now.ToString(&quot;mmss&quot;)]">
+                <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="478.6666666666667,220.66666666666666" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Low" QueueType="Linkedin_Queue" Reference="[JobOffersFilePath.Split(&quot;/&quot;c).Last+Now.ToString(&quot;mmss&quot;)]">
                   <ui:AddQueueItem.ItemInformation>
-                    <InArgument x:TypeArguments="x:String" x:Key="ReferenceID">[JobOffersFilePath.Split("/"c).Last+Now.ToString("mmss")]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="Timestamp">[Now.ToString]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="FileName">[JobOffersFilePath.Split("/"c).Last]</InArgument>
-                    <InArgument x:TypeArguments="x:Int32" x:Key="TotalJobOffer">[ExtractJobInfoDataTable.Rows.Count]</InArgument>
-                    <InArgument x:TypeArguments="x:Int32" x:Key="TotalJobsWithEasyApply">[ExtractJobInfoDataTable.AsEnumerable.Where(Function(row) Not String.IsNullOrEmpty(row("Easy Apply").ToString.Trim) AndAlso row("Easy Apply").ToString.Trim.Equals("Easy Apply")).Count]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="ReferenceID">[JobOffersFilePath.Split("/"c).Last().Replace(".xlsx","").Replace("_JobOffers_","").Replace(" ","").ToLower + Now.ToString("mmss")]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="Timestamp">[Now.ToString("dd/MM/yyyy HH:mm:ss")]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="FileName">[JobOffersFilePath.Split("/"c).Last()]</InArgument>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="TotalJobOffer">[dtReportData.Rows.Count]</InArgument>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="TotalJobsWithEasyApply">[dtReportData.AsEnumerable.Where(Function(row) Not String.IsNullOrEmpty(row("Easy Apply").ToString.Trim) AndAlso row("Easy Apply").ToString.Trim.Equals("Easy Apply")).Count]</InArgument>
                     <InArgument x:TypeArguments="x:String" x:Key="RolName">[currentText.ToUpper]</InArgument>
                   </ui:AddQueueItem.ItemInformation>
                 </ui:AddQueueItem>
