@@ -1,0 +1,612 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ChatGPTUploadFile" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uibi="http://schemas.uipath.com/workflow/infrastructure/baf/uibi" xmlns:uiisi="http://schemas.uipath.com/workflow/infrastructure/is/uiisi" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:uoia="clr-namespace:UiPath.OpenAI.IntegrationService.Activities;assembly=UiPath.OpenAI.IntegrationService.Activities" xmlns:uoic="clr-namespace:UiPath.OpenAI.IntegrationService.Client;assembly=UiPath.OpenAI.IntegrationService" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_FilePath" Type="InArgument(x:String)" />
+  </x:Members>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Services.RuntimeAnalyze</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.Core.Activities.Storage</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.BAF.Infrastructure.Entity</x:String>
+      <x:String>UiPath.IntegrationService.Infrastructure.Descriptor</x:String>
+      <x:String>UiPath.BAF.Infrastructure.Enums</x:String>
+      <x:String>UiPath.BAF.Infrastructure.Telemetry</x:String>
+      <x:String>UiPath.BAF.Infrastructure</x:String>
+      <x:String>UiPath.BAF.Infrastructure.Connection</x:String>
+      <x:String>UiPath.OpenAI.IntegrationService.Activities</x:String>
+      <x:String>UiPath.IntegrationCore.Activities</x:String>
+      <x:String>UiPath.BAF.Activities</x:String>
+      <x:String>UiPath.BAF.Infrastructure.Contracts</x:String>
+      <x:String>UiPath.OpenAI.IntegrationService.Client</x:String>
+      <x:String>UiPath.OpenAI.IntegrationService.Client</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Contracts</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.BAF.Infrastructure</AssemblyReference>
+      <AssemblyReference>UiPath.IntegrationService.Infrastructure</AssemblyReference>
+      <AssemblyReference>UiPath.OpenAI.IntegrationService.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OpenAI.IntegrationService</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="1650.6666666666665,586.04" sap2010:WorkflowViewState.IdRef="Sequence_18">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="ChatGPT_Upload File" sap:VirtualizedContainerService.HintSize="450,494" sap2010:WorkflowViewState.IdRef="Sequence_17">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="uoic:GenerateChatCompletion" Name="responseObj" />
+        <Variable x:TypeArguments="x:String" Name="topGeneratedText" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <uoia:GenerateChatCompletion Language="{x:Null}" ActivityInstanceId="c4c8b63a-56e2-4846-9bfd-d999b7e752d7" BindingsVersion="2.1" BusinessEntityName="Generate Chat Completion" ConfiguredBusinessEntity="generateChatCompletion" ConnectionId="7b116b0f-62ad-4660-a9db-25e7c0b66ae6" Connector="uipath-openai-openai" CrudOperation="Create" DesignConnectionEnabled="True" DisplayName="Generate Chat Completion" sap:VirtualizedContainerService.HintSize="416,186.66666666666666" sap2010:WorkflowViewState.IdRef="GenerateChatCompletion_1">
+        <uoia:GenerateChatCompletion.BusinessEntity>
+          <uibi:BusinessEntity Metadata="{x:Reference __ReferenceID14}" Name="generateChatCompletion">
+            <uibi:BusinessEntity.AllFields>
+              <scg:List x:TypeArguments="uibi:EntityField" Capacity="15">
+                <uiisi:OperationEntityField x:TypeArguments="uoic:GenerateChatCompletion" ArgumentDirection="In" ArgumentType="uoic:GenerateChatCompletion" DataType="GenerateChatCompletion" Description="The request data in JSON format for the chat completion" DisplayName="Completion Request" FormDataType="ExpressionTextBox" IsChildEntityField="False" IsCustomField="False" IsDefault="False" IsDeletable="True" IsHidden="True" IsIdField="False" IsMandatory="True" IsParameter="True" IsPriority="False" IsSelected="False" Location="Undefined" Name="body" ShouldFilterOnChange="False" />
+                <x:Reference>__ReferenceID15</x:Reference>
+                <x:Reference>__ReferenceID16</x:Reference>
+                <x:Reference>__ReferenceID17</x:Reference>
+                <x:Reference>__ReferenceID18</x:Reference>
+                <x:Reference>__ReferenceID19</x:Reference>
+                <x:Reference>__ReferenceID20</x:Reference>
+                <x:Reference>__ReferenceID21</x:Reference>
+                <x:Reference>__ReferenceID22</x:Reference>
+                <x:Reference>__ReferenceID23</x:Reference>
+                <x:Reference>__ReferenceID24</x:Reference>
+                <x:Reference>__ReferenceID25</x:Reference>
+                <x:Reference>__ReferenceID26</x:Reference>
+                <x:Reference>__ReferenceID27</x:Reference>
+                <x:Reference>__ReferenceID28</x:Reference>
+              </scg:List>
+            </uibi:BusinessEntity.AllFields>
+            <uibi:BusinessEntity.EntityMetadata>
+              <uibi:EntityMetadata DisplayName="Generate Chat Completion" EligibleOperations="1" IsCustomEntity="False" Name="generateChatCompletion">
+                <uibi:EntityMetadata.Metadata>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object" x:Name="__ReferenceID14">
+                    <x:String x:Key="Object">generateChatCompletion</x:String>
+                    <x:String x:Key="Client">UiPath.OpenAI.IntegrationService.Client.GenerateChatCompletionAPIClient</x:String>
+                    <x:String x:Key="Operation">CreateGenerateChatCompletion</x:String>
+                    <x:String x:Key="Path">/generateChatCompletion</x:String>
+                  </scg:Dictionary>
+                </uibi:EntityMetadata.Metadata>
+              </uibi:EntityMetadata>
+            </uibi:BusinessEntity.EntityMetadata>
+            <uibi:BusinessEntity.SelectedFields>
+              <scg:List x:TypeArguments="uibi:EntityField" Capacity="16">
+                <x:Reference>__ReferenceID16</x:Reference>
+                <x:Reference>__ReferenceID17</x:Reference>
+                <x:Reference>__ReferenceID18</x:Reference>
+                <x:Reference>__ReferenceID19</x:Reference>
+                <x:Reference>__ReferenceID20</x:Reference>
+                <x:Reference>__ReferenceID21</x:Reference>
+                <x:Reference>__ReferenceID22</x:Reference>
+                <x:Reference>__ReferenceID23</x:Reference>
+                <x:Reference>__ReferenceID24</x:Reference>
+                <x:Reference>__ReferenceID25</x:Reference>
+                <x:Reference>__ReferenceID26</x:Reference>
+                <x:Reference>__ReferenceID27</x:Reference>
+                <x:Reference>__ReferenceID28</x:Reference>
+                <x:Reference>__ReferenceID15</x:Reference>
+              </scg:List>
+            </uibi:BusinessEntity.SelectedFields>
+            <uibi:BusinessEntity.TelemetryProperties>
+              <scg:Dictionary x:TypeArguments="uibi:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+            </uibi:BusinessEntity.TelemetryProperties>
+          </uibi:BusinessEntity>
+        </uoia:GenerateChatCompletion.BusinessEntity>
+        <uoia:GenerateChatCompletion.CachedLookupValues>
+          <scg:Dictionary x:TypeArguments="x:String, scg:List(uiisi:LookupValue)" />
+        </uoia:GenerateChatCompletion.CachedLookupValues>
+        <uoia:GenerateChatCompletion.DesignConnectionRequest>
+          <uiisi:ConnectionParameters AuthType="ElementInstance" ConnectionId="7b116b0f-62ad-4660-a9db-25e7c0b66ae6" ConnectionName="OpenAI #1" ConnectorKey="uipath-openai-openai">
+            <uiisi:ConnectionParameters.TelemetryInfo>
+              <uiisi:TelemetryInfo ActivityPack="UiPath.OpenAI.IntegrationService.Activities" ActivityPackVersion="6.1.0" Source="StudioDesktop" />
+            </uiisi:ConnectionParameters.TelemetryInfo>
+          </uiisi:ConnectionParameters>
+        </uoia:GenerateChatCompletion.DesignConnectionRequest>
+        <uoia:GenerateChatCompletion.SelectedFields>
+          <scg:List x:TypeArguments="uibi:EntityField" Capacity="14">
+            <uiisi:OperationEntityField x:TypeArguments="x:String" x:Name="__ReferenceID16" ArgumentDirection="In" ArgumentType="x:String" DataType="String" DefaultValue="Write an email to a new sales lead" Description="The prompt to use for the chat completion(s) generation" DisplayName="Prompt" FormDataType="ExpressionTextBox" InArgumentValue="Lee y clasifica las ofertas laborales listadas en el archivo xlsx con base al CV adjunto en pdf. Además, crea los CV ajustados/personalizados para cada oferta identificada.&#xA;&#xA;- Analiza el contenido de cada oferta laboral en el archivo xlsx.&#xA;- Revisa los detalles y habilidades en el CV adjunto en pdf.&#xA;- Asocia cada oferta laboral con el CV si los requisitos coinciden de manera significativa.&#xA;- Modifica el CV para que se ajuste y destaque las habilidades y experiencias pertinentes a cada oferta laboral específica.&#xA;&#xA;# Steps&#xA;&#xA;1. **Lectura de la Oferta y el CV**: Lee el contenido de las ofertas laborales en el archivo xlsx y el CV del archivo pdf.&#xA;2. **Comparación y Clasificación**: Compara los requisitos de cada oferta laboral con las habilidades y experiencias subrayadas en el CV e identifica la correlación.&#xA;3. **Creación del CV Personalizado**: Ajusta y elabora un CV específico para cada oferta laboral en la que el candidato pueda ser un buen ajuste según la comparación hecha.&#xA;4. **Revisión y Optimización**: Asegúrate de que cada versión del CV resalte de manera efectiva las cualificaciones relevantes para la oferta laboral seleccionada.&#xA;&#xA;# Output Format&#xA;&#xA;Cada CV ajustado debe ser generado como un documento pdf individual que se ajuste al formato de CV profesional y standard.&#xA;&#xA;# Notes&#xA;&#xA;- En el formato de CV, utiliza herramientas y palabras clave que maximicen la visibilidad del candidato ante sistemas de rastreo de aplicantes (ATS - Applicant Tracking Systems).&#xA;- Considera añadir una sección de resumen personalizado para cada CV que explique brevemente la adecuación del candidato a la oferta laboral.&#xA;" IsChildEntityField="True" IsCustomField="False" IsDefault="False" IsDeletable="False" IsHidden="False" IsIdField="False" IsMandatory="True" IsPriority="False" IsSelected="False" Location="Undefined" Name="body.prompt" Order="1" ShouldFilterOnChange="False">
+              <uiisi:OperationEntityField.ArgumentValue>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">Lee y clasifica las ofertas laborales listadas en el archivo xlsx con base al CV adjunto en pdf. Además, crea los CV ajustados/personalizados para cada oferta identificada.
+
+- Analiza el contenido de cada oferta laboral en el archivo xlsx.
+- Revisa los detalles y habilidades en el CV adjunto en pdf.
+- Asocia cada oferta laboral con el CV si los requisitos coinciden de manera significativa.
+- Modifica el CV para que se ajuste y destaque las habilidades y experiencias pertinentes a cada oferta laboral específica.
+
+# Steps
+
+1. **Lectura de la Oferta y el CV**: Lee el contenido de las ofertas laborales en el archivo xlsx y el CV del archivo pdf.
+2. **Comparación y Clasificación**: Compara los requisitos de cada oferta laboral con las habilidades y experiencias subrayadas en el CV e identifica la correlación.
+3. **Creación del CV Personalizado**: Ajusta y elabora un CV específico para cada oferta laboral en la que el candidato pueda ser un buen ajuste según la comparación hecha.
+4. **Revisión y Optimización**: Asegúrate de que cada versión del CV resalte de manera efectiva las cualificaciones relevantes para la oferta laboral seleccionada.
+
+# Output Format
+
+Cada CV ajustado debe ser generado como un documento pdf individual que se ajuste al formato de CV profesional y standard.
+
+# Notes
+
+- En el formato de CV, utiliza herramientas y palabras clave que maximicen la visibilidad del candidato ante sistemas de rastreo de aplicantes (ATS - Applicant Tracking Systems).
+- Considera añadir una sección de resumen personalizado para cada CV que explique brevemente la adecuación del candidato a la oferta laboral.
+</InArgument>
+              </uiisi:OperationEntityField.ArgumentValue>
+              <uiisi:OperationEntityField.Metadata>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <uiisi:CustomFieldsPriority x:Key="CustomFieldsPriority">Default</uiisi:CustomFieldsPriority>
+                </scg:Dictionary>
+              </uiisi:OperationEntityField.Metadata>
+              <uiisi:OperationEntityField.Value>
+                <Literal x:TypeArguments="x:String" xml:space="preserve">Lee y clasifica las ofertas laborales listadas en el archivo xlsx con base al CV adjunto en pdf. Además, crea los CV ajustados/personalizados para cada oferta identificada.
+
+- Analiza el contenido de cada oferta laboral en el archivo xlsx.
+- Revisa los detalles y habilidades en el CV adjunto en pdf.
+- Asocia cada oferta laboral con el CV si los requisitos coinciden de manera significativa.
+- Modifica el CV para que se ajuste y destaque las habilidades y experiencias pertinentes a cada oferta laboral específica.
+
+# Steps
+
+1. **Lectura de la Oferta y el CV**: Lee el contenido de las ofertas laborales en el archivo xlsx y el CV del archivo pdf.
+2. **Comparación y Clasificación**: Compara los requisitos de cada oferta laboral con las habilidades y experiencias subrayadas en el CV e identifica la correlación.
+3. **Creación del CV Personalizado**: Ajusta y elabora un CV específico para cada oferta laboral en la que el candidato pueda ser un buen ajuste según la comparación hecha.
+4. **Revisión y Optimización**: Asegúrate de que cada versión del CV resalte de manera efectiva las cualificaciones relevantes para la oferta laboral seleccionada.
+
+# Output Format
+
+Cada CV ajustado debe ser generado como un documento pdf individual que se ajuste al formato de CV profesional y standard.
+
+# Notes
+
+- En el formato de CV, utiliza herramientas y palabras clave que maximicen la visibilidad del candidato ante sistemas de rastreo de aplicantes (ATS - Applicant Tracking Systems).
+- Considera añadir una sección de resumen personalizado para cada CV que explique brevemente la adecuación del candidato a la oferta laboral.
+</Literal>
+              </uiisi:OperationEntityField.Value>
+            </uiisi:OperationEntityField>
+            <uiisi:OperationEntityField x:TypeArguments="x:String" x:Name="__ReferenceID17" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="Instructions guide the AI to respond in a way that matches your intent. Defaults to null." DisplayName="Instruction" FormDataType="ExpressionTextBox" InArgumentValue="Lee y clasifica las ofertas laborales listadas en el archivo xlsx con base al CV adjunto en pdf. Además, crea los CV ajustados/personalizados para cada oferta identificada.&#xA;&#xA;- Analiza el contenido de cada oferta laboral en el archivo xlsx.&#xA;- Revisa los detalles y habilidades en el CV adjunto en pdf.&#xA;- Asocia cada oferta laboral con el CV si los requisitos coinciden de manera significativa.&#xA;- Modifica el CV para que se ajuste y destaque las habilidades y experiencias pertinentes a cada oferta laboral específica.&#xA;&#xA;# Steps&#xA;&#xA;1. **Lectura de la Oferta y el CV**: Lee el contenido de las ofertas laborales en el archivo xlsx y el CV del archivo pdf.&#xA;2. **Comparación y Clasificación**: Compara los requisitos de cada oferta laboral con las habilidades y experiencias subrayadas en el CV e identifica la correlación.&#xA;3. **Creación del CV Personalizado**: Ajusta y elabora un CV específico para cada oferta laboral en la que el candidato pueda ser un buen ajuste según la comparación hecha.&#xA;4. **Revisión y Optimización**: Asegúrate de que cada versión del CV resalte de manera efectiva las cualificaciones relevantes para la oferta laboral seleccionada.&#xA;&#xA;# Output Format&#xA;&#xA;Cada CV ajustado debe ser generado como un documento pdf individual que se ajuste al formato de CV profesional y standard.&#xA;&#xA;# Notes&#xA;&#xA;- En el formato de CV, utiliza herramientas y palabras clave que maximicen la visibilidad del candidato ante sistemas de rastreo de aplicantes (ATS - Applicant Tracking Systems).&#xA;- Considera añadir una sección de resumen personalizado para cada CV que explique brevemente la adecuación del candidato a la oferta laboral.&#xA;" IsChildEntityField="True" IsCustomField="False" IsDefault="False" IsDeletable="False" IsHidden="False" IsIdField="False" IsMandatory="False" IsPriority="False" IsSelected="False" Location="Undefined" Name="body.instruction" Order="3" ShouldFilterOnChange="False">
+              <uiisi:OperationEntityField.ArgumentValue>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">Lee y clasifica las ofertas laborales listadas en el archivo xlsx con base al CV adjunto en pdf. Además, crea los CV ajustados/personalizados para cada oferta identificada.
+
+- Analiza el contenido de cada oferta laboral en el archivo xlsx.
+- Revisa los detalles y habilidades en el CV adjunto en pdf.
+- Asocia cada oferta laboral con el CV si los requisitos coinciden de manera significativa.
+- Modifica el CV para que se ajuste y destaque las habilidades y experiencias pertinentes a cada oferta laboral específica.
+
+# Steps
+
+1. **Lectura de la Oferta y el CV**: Lee el contenido de las ofertas laborales en el archivo xlsx y el CV del archivo pdf.
+2. **Comparación y Clasificación**: Compara los requisitos de cada oferta laboral con las habilidades y experiencias subrayadas en el CV e identifica la correlación.
+3. **Creación del CV Personalizado**: Ajusta y elabora un CV específico para cada oferta laboral en la que el candidato pueda ser un buen ajuste según la comparación hecha.
+4. **Revisión y Optimización**: Asegúrate de que cada versión del CV resalte de manera efectiva las cualificaciones relevantes para la oferta laboral seleccionada.
+
+# Output Format
+
+Cada CV ajustado debe ser generado como un documento pdf individual que se ajuste al formato de CV profesional y standard.
+
+# Notes
+
+- En el formato de CV, utiliza herramientas y palabras clave que maximicen la visibilidad del candidato ante sistemas de rastreo de aplicantes (ATS - Applicant Tracking Systems).
+- Considera añadir una sección de resumen personalizado para cada CV que explique brevemente la adecuación del candidato a la oferta laboral.
+</InArgument>
+              </uiisi:OperationEntityField.ArgumentValue>
+              <uiisi:OperationEntityField.Metadata>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <uiisi:CustomFieldsPriority x:Key="CustomFieldsPriority">Default</uiisi:CustomFieldsPriority>
+                </scg:Dictionary>
+              </uiisi:OperationEntityField.Metadata>
+              <uiisi:OperationEntityField.Value>
+                <Literal x:TypeArguments="x:String" xml:space="preserve">Lee y clasifica las ofertas laborales listadas en el archivo xlsx con base al CV adjunto en pdf. Además, crea los CV ajustados/personalizados para cada oferta identificada.
+
+- Analiza el contenido de cada oferta laboral en el archivo xlsx.
+- Revisa los detalles y habilidades en el CV adjunto en pdf.
+- Asocia cada oferta laboral con el CV si los requisitos coinciden de manera significativa.
+- Modifica el CV para que se ajuste y destaque las habilidades y experiencias pertinentes a cada oferta laboral específica.
+
+# Steps
+
+1. **Lectura de la Oferta y el CV**: Lee el contenido de las ofertas laborales en el archivo xlsx y el CV del archivo pdf.
+2. **Comparación y Clasificación**: Compara los requisitos de cada oferta laboral con las habilidades y experiencias subrayadas en el CV e identifica la correlación.
+3. **Creación del CV Personalizado**: Ajusta y elabora un CV específico para cada oferta laboral en la que el candidato pueda ser un buen ajuste según la comparación hecha.
+4. **Revisión y Optimización**: Asegúrate de que cada versión del CV resalte de manera efectiva las cualificaciones relevantes para la oferta laboral seleccionada.
+
+# Output Format
+
+Cada CV ajustado debe ser generado como un documento pdf individual que se ajuste al formato de CV profesional y standard.
+
+# Notes
+
+- En el formato de CV, utiliza herramientas y palabras clave que maximicen la visibilidad del candidato ante sistemas de rastreo de aplicantes (ATS - Applicant Tracking Systems).
+- Considera añadir una sección de resumen personalizado para cada CV que explique brevemente la adecuación del candidato a la oferta laboral.
+</Literal>
+              </uiisi:OperationEntityField.Value>
+            </uiisi:OperationEntityField>
+            <uiisi:OperationEntityField x:TypeArguments="x:String" x:Name="__ReferenceID18" ArgumentDirection="In" ArgumentType="x:String" DataType="String" DefaultValue="gpt-4" Description="The large language model (LLM) to use for the chat completion. Defaults to gpt-4" DisplayName="Model Name" FormDataType="ExpressionTextBox" InArgumentValue="gpt-4" IsChildEntityField="True" IsCustomField="False" IsDefault="False" IsDeletable="False" IsHidden="False" IsIdField="False" IsMandatory="False" IsPriority="False" IsSelected="False" Location="Undefined" Name="body.model" Order="3" ShouldFilterOnChange="False">
+              <uiisi:OperationEntityField.ArgumentValue>
+                <InArgument x:TypeArguments="x:String">gpt-4</InArgument>
+              </uiisi:OperationEntityField.ArgumentValue>
+              <uiisi:OperationEntityField.EnumValues>
+                <scg:List x:TypeArguments="x:String" Capacity="4">
+                  <x:String>gpt-4</x:String>
+                  <x:String>gpt-4-turbo</x:String>
+                  <x:String>gpt-4o</x:String>
+                  <x:String>gpt-3.5-turbo</x:String>
+                </scg:List>
+              </uiisi:OperationEntityField.EnumValues>
+              <uiisi:OperationEntityField.Metadata>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <uiisi:CustomFieldsPriority x:Key="CustomFieldsPriority">Default</uiisi:CustomFieldsPriority>
+                </scg:Dictionary>
+              </uiisi:OperationEntityField.Metadata>
+              <uiisi:OperationEntityField.Value>
+                <Literal x:TypeArguments="x:String">gpt-4</Literal>
+              </uiisi:OperationEntityField.Value>
+            </uiisi:OperationEntityField>
+            <uiisi:OperationEntityField x:TypeArguments="s:Nullable(x:Int32)" InArgumentValue="{x:Reference __ReferenceID0}" Value="{x:Reference __ReferenceID1}" x:Name="__ReferenceID19" ArgumentDirection="In" ArgumentType="s:Nullable(x:Int32)" DataType="Int32" DefaultValue="1920" Description="The maximum number of tokens allowed for the prompt and generated answer. Fewer tokens are less expensive. Defaults to 3840." DisplayName="Max Tokens" FormDataType="ExpressionTextBox" IsChildEntityField="True" IsCustomField="False" IsDefault="False" IsDeletable="False" IsHidden="False" IsIdField="False" IsMandatory="False" IsPriority="False" IsSelected="False" Location="Undefined" Name="body.max_tokens" Order="3" ShouldFilterOnChange="False">
+              <uiisi:OperationEntityField.ArgumentValue>
+                <InArgument x:TypeArguments="s:Nullable(x:Int32)" x:Name="__ReferenceID0">
+                  <Literal x:TypeArguments="s:Nullable(x:Int32)" x:Name="__ReferenceID1" Value="1920" />
+                </InArgument>
+              </uiisi:OperationEntityField.ArgumentValue>
+              <uiisi:OperationEntityField.Metadata>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <uiisi:CustomFieldsPriority x:Key="CustomFieldsPriority">Default</uiisi:CustomFieldsPriority>
+                </scg:Dictionary>
+              </uiisi:OperationEntityField.Metadata>
+            </uiisi:OperationEntityField>
+            <uiisi:OperationEntityField x:TypeArguments="s:Nullable(x:Int32)" InArgumentValue="{x:Reference __ReferenceID2}" Value="{x:Reference __ReferenceID3}" x:Name="__ReferenceID20" ArgumentDirection="In" ArgumentType="s:Nullable(x:Int32)" DataType="Int32" DefaultValue="1" Description="A number of at least 1.  This determines how many completion choices the AI will return. Defaults to 1." DisplayName="N" FormDataType="ExpressionTextBox" IsChildEntityField="True" IsCustomField="False" IsDefault="False" IsDeletable="False" IsHidden="False" IsIdField="False" IsMandatory="False" IsPriority="False" IsSelected="False" Location="Undefined" Name="body.n" Order="3" ShouldFilterOnChange="False">
+              <uiisi:OperationEntityField.ArgumentValue>
+                <InArgument x:TypeArguments="s:Nullable(x:Int32)" x:Name="__ReferenceID2">
+                  <Literal x:TypeArguments="s:Nullable(x:Int32)" x:Name="__ReferenceID3" Value="1" />
+                </InArgument>
+              </uiisi:OperationEntityField.ArgumentValue>
+              <uiisi:OperationEntityField.Metadata>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <uiisi:CustomFieldsPriority x:Key="CustomFieldsPriority">Default</uiisi:CustomFieldsPriority>
+                </scg:Dictionary>
+              </uiisi:OperationEntityField.Metadata>
+            </uiisi:OperationEntityField>
+            <uiisi:OperationEntityField x:TypeArguments="s:Nullable(x:Double)" InArgumentValue="{x:Reference __ReferenceID4}" Value="{x:Reference __ReferenceID5}" x:Name="__ReferenceID21" ArgumentDirection="In" ArgumentType="s:Nullable(x:Double)" DataType="Double" DefaultValue="1" Description="⌘ ⌥ K&#xA;A number between 0 and 2.  Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. Defaults to 1." DisplayName="Temperature" FormDataType="ExpressionTextBox" IsChildEntityField="True" IsCustomField="False" IsDefault="False" IsDeletable="False" IsHidden="False" IsIdField="False" IsMandatory="False" IsPriority="False" IsSelected="False" Location="Undefined" Name="body.temperature" Order="3" ShouldFilterOnChange="False">
+              <uiisi:OperationEntityField.ArgumentValue>
+                <InArgument x:TypeArguments="s:Nullable(x:Double)" x:Name="__ReferenceID4">
+                  <Literal x:TypeArguments="s:Nullable(x:Double)" x:Name="__ReferenceID5" Value="1" />
+                </InArgument>
+              </uiisi:OperationEntityField.ArgumentValue>
+              <uiisi:OperationEntityField.Metadata>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <uiisi:CustomFieldsPriority x:Key="CustomFieldsPriority">Default</uiisi:CustomFieldsPriority>
+                </scg:Dictionary>
+              </uiisi:OperationEntityField.Metadata>
+            </uiisi:OperationEntityField>
+            <uiisi:OperationEntityField x:TypeArguments="s:Nullable(x:Double)" InArgumentValue="{x:Reference __ReferenceID6}" Value="{x:Reference __ReferenceID7}" x:Name="__ReferenceID22" ArgumentDirection="In" ArgumentType="s:Nullable(x:Double)" DataType="Double" DefaultValue="1" Description="A number between 0 and 1.  The lower the number, the fewer tokens are considered. Defaults to 1." DisplayName="Top P" FormDataType="ExpressionTextBox" IsChildEntityField="True" IsCustomField="False" IsDefault="False" IsDeletable="False" IsHidden="False" IsIdField="False" IsMandatory="False" IsPriority="False" IsSelected="False" Location="Undefined" Name="body.top_p" Order="3" ShouldFilterOnChange="False">
+              <uiisi:OperationEntityField.ArgumentValue>
+                <InArgument x:TypeArguments="s:Nullable(x:Double)" x:Name="__ReferenceID6">
+                  <Literal x:TypeArguments="s:Nullable(x:Double)" x:Name="__ReferenceID7" Value="1" />
+                </InArgument>
+              </uiisi:OperationEntityField.ArgumentValue>
+              <uiisi:OperationEntityField.Metadata>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <uiisi:CustomFieldsPriority x:Key="CustomFieldsPriority">Default</uiisi:CustomFieldsPriority>
+                </scg:Dictionary>
+              </uiisi:OperationEntityField.Metadata>
+            </uiisi:OperationEntityField>
+            <uiisi:OperationEntityField x:TypeArguments="s:Nullable(x:Boolean)" InArgumentValue="{x:Reference __ReferenceID8}" Value="{x:Reference __ReferenceID9}" x:Name="__ReferenceID23" ArgumentDirection="In" ArgumentType="s:Nullable(x:Boolean)" DataType="Boolean" DefaultValue="false" Description="Whether to stream back partial progress. If set, tokens will be sent as data-only server-sent events as they become available, with the stream terminated by a data: [DONE] message. Defaults to false." DisplayName="Stream" FormDataType="ExpressionTextBox" IsChildEntityField="True" IsCustomField="False" IsDefault="False" IsDeletable="False" IsHidden="False" IsIdField="False" IsMandatory="False" IsPriority="False" IsSelected="False" Location="Undefined" Name="body.stream" Order="3" ShouldFilterOnChange="False">
+              <uiisi:OperationEntityField.ArgumentValue>
+                <InArgument x:TypeArguments="s:Nullable(x:Boolean)" x:Name="__ReferenceID8">
+                  <Literal x:TypeArguments="s:Nullable(x:Boolean)" x:Name="__ReferenceID9" Value="False" />
+                </InArgument>
+              </uiisi:OperationEntityField.ArgumentValue>
+              <uiisi:OperationEntityField.Metadata>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <uiisi:CustomFieldsPriority x:Key="CustomFieldsPriority">Default</uiisi:CustomFieldsPriority>
+                </scg:Dictionary>
+              </uiisi:OperationEntityField.Metadata>
+            </uiisi:OperationEntityField>
+            <uiisi:OperationEntityField x:TypeArguments="x:String" x:Name="__ReferenceID24" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. Defaults to null." DisplayName="Stop" FormDataType="ExpressionTextBox" IsChildEntityField="True" IsCustomField="False" IsDefault="False" IsDeletable="False" IsHidden="False" IsIdField="False" IsMandatory="False" IsPriority="False" IsSelected="False" Location="Undefined" Name="body.stop" Order="3" ShouldFilterOnChange="False">
+              <uiisi:OperationEntityField.Metadata>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <uiisi:CustomFieldsPriority x:Key="CustomFieldsPriority">Default</uiisi:CustomFieldsPriority>
+                </scg:Dictionary>
+              </uiisi:OperationEntityField.Metadata>
+            </uiisi:OperationEntityField>
+            <uiisi:OperationEntityField x:TypeArguments="s:Nullable(x:Double)" InArgumentValue="{x:Reference __ReferenceID10}" Value="{x:Reference __ReferenceID11}" x:Name="__ReferenceID25" ArgumentDirection="In" ArgumentType="s:Nullable(x:Double)" DataType="Double" DefaultValue="0" Description="Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. Defaults to 0." DisplayName="Presence Penalty" FormDataType="ExpressionTextBox" IsChildEntityField="True" IsCustomField="False" IsDefault="False" IsDeletable="False" IsHidden="False" IsIdField="False" IsMandatory="False" IsPriority="False" IsSelected="False" Location="Undefined" Name="body.presence_penalty" Order="3" ShouldFilterOnChange="False">
+              <uiisi:OperationEntityField.ArgumentValue>
+                <InArgument x:TypeArguments="s:Nullable(x:Double)" x:Name="__ReferenceID10">
+                  <Literal x:TypeArguments="s:Nullable(x:Double)" x:Name="__ReferenceID11" Value="0" />
+                </InArgument>
+              </uiisi:OperationEntityField.ArgumentValue>
+              <uiisi:OperationEntityField.Metadata>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <uiisi:CustomFieldsPriority x:Key="CustomFieldsPriority">Default</uiisi:CustomFieldsPriority>
+                </scg:Dictionary>
+              </uiisi:OperationEntityField.Metadata>
+            </uiisi:OperationEntityField>
+            <uiisi:OperationEntityField x:TypeArguments="s:Nullable(x:Double)" InArgumentValue="{x:Reference __ReferenceID12}" Value="{x:Reference __ReferenceID13}" x:Name="__ReferenceID26" ArgumentDirection="In" ArgumentType="s:Nullable(x:Double)" DataType="Double" DefaultValue="0" Description="Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. Defaults to 0." DisplayName="Frequency Penalty" FormDataType="ExpressionTextBox" IsChildEntityField="True" IsCustomField="False" IsDefault="False" IsDeletable="False" IsHidden="False" IsIdField="False" IsMandatory="False" IsPriority="False" IsSelected="False" Location="Undefined" Name="body.frequency_penalty" Order="3" ShouldFilterOnChange="False">
+              <uiisi:OperationEntityField.ArgumentValue>
+                <InArgument x:TypeArguments="s:Nullable(x:Double)" x:Name="__ReferenceID12">
+                  <Literal x:TypeArguments="s:Nullable(x:Double)" x:Name="__ReferenceID13" Value="0" />
+                </InArgument>
+              </uiisi:OperationEntityField.ArgumentValue>
+              <uiisi:OperationEntityField.Metadata>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <uiisi:CustomFieldsPriority x:Key="CustomFieldsPriority">Default</uiisi:CustomFieldsPriority>
+                </scg:Dictionary>
+              </uiisi:OperationEntityField.Metadata>
+            </uiisi:OperationEntityField>
+            <uiisi:OperationEntityField x:TypeArguments="x:String" x:Name="__ReferenceID27" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. Defaults to null." DisplayName="User" FormDataType="ExpressionTextBox" IsChildEntityField="True" IsCustomField="False" IsDefault="False" IsDeletable="False" IsHidden="False" IsIdField="False" IsMandatory="False" IsPriority="False" IsSelected="False" Location="Undefined" Name="body.user" Order="3" ShouldFilterOnChange="False">
+              <uiisi:OperationEntityField.Metadata>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <uiisi:CustomFieldsPriority x:Key="CustomFieldsPriority">Default</uiisi:CustomFieldsPriority>
+                </scg:Dictionary>
+              </uiisi:OperationEntityField.Metadata>
+            </uiisi:OperationEntityField>
+            <uiisi:OperationEntityField x:TypeArguments="x:String" x:Name="__ReferenceID28" ArgumentDirection="Out" ArgumentType="x:String" DataType="String" Description="The text for the top choice generated by the AI" DisplayName="Top Generated Text" FormDataType="ExpressionTextBox" IsChildEntityField="True" IsCustomField="False" IsDefault="False" IsDeletable="False" IsHidden="False" IsIdField="False" IsMandatory="False" IsPriority="False" IsSelected="False" Location="Undefined" Name="Response.text" OutArgumentValue="[topGeneratedText]" ShouldFilterOnChange="False">
+              <uiisi:OperationEntityField.ArgumentValue>
+                <OutArgument x:TypeArguments="x:String">[topGeneratedText]</OutArgument>
+              </uiisi:OperationEntityField.ArgumentValue>
+              <uiisi:OperationEntityField.Metadata>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <uiisi:CustomFieldsPriority x:Key="CustomFieldsPriority">Default</uiisi:CustomFieldsPriority>
+                </scg:Dictionary>
+              </uiisi:OperationEntityField.Metadata>
+              <uiisi:OperationEntityField.Value>
+                <VisualBasicReference x:TypeArguments="x:String">[topGeneratedText]</VisualBasicReference>
+              </uiisi:OperationEntityField.Value>
+            </uiisi:OperationEntityField>
+            <uiisi:OperationEntityField x:TypeArguments="uoic:GenerateChatCompletion" x:Name="__ReferenceID15" ArgumentDirection="Out" ArgumentType="uoic:GenerateChatCompletion" DataType="GenerateChatCompletion" Description="The Generate Chat Completion object returned." DisplayName="Response" FormDataType="ExpressionTextBox" IsChildEntityField="False" IsCustomField="False" IsDefault="False" IsDeletable="True" IsHidden="False" IsIdField="False" IsMandatory="False" IsPriority="False" IsSelected="False" Location="Undefined" Name="Response" OutArgumentValue="[responseObj]" ShouldFilterOnChange="False">
+              <uiisi:OperationEntityField.ArgumentValue>
+                <OutArgument x:TypeArguments="uoic:GenerateChatCompletion">[responseObj]</OutArgument>
+              </uiisi:OperationEntityField.ArgumentValue>
+              <uiisi:OperationEntityField.Metadata>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsPermanentlyHidden">False</x:Boolean>
+                </scg:Dictionary>
+              </uiisi:OperationEntityField.Metadata>
+              <uiisi:OperationEntityField.Value>
+                <VisualBasicReference x:TypeArguments="uoic:GenerateChatCompletion">[responseObj]</VisualBasicReference>
+              </uiisi:OperationEntityField.Value>
+            </uiisi:OperationEntityField>
+          </scg:List>
+        </uoia:GenerateChatCompletion.SelectedFields>
+        <uoia:GenerateChatCompletion.TelemetryProperties>
+          <scg:Dictionary x:TypeArguments="uibi:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+        </uoia:GenerateChatCompletion.TelemetryProperties>
+      </uoia:GenerateChatCompletion>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[&quot;stop&quot;]" />
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+        <ui:CommentOut.Body>
+          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_20">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome ChatGPT" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="c6630d01-746e-4d50-a4bc-9e1920016130" Version="V2">
+              <uix:NApplicationCard.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="416,1017.6" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'P'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="382.4,225.6" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="c6630d01-746e-4d50-a4bc-9e1920016130" Version="V4">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="https://chatgpt.com/?model=auto" ContentHash="l3OPaWDN3Uy3gO2CwGWSaQ" DesignTimeRectangle="1002, 588, 30, 30" DesignTimeScaleFactor="1.25" ElementType="Icon" FuzzySelectorArgument="&lt;webctrl type='' tag='svg' class='' aaname='' /&gt;" Guid="3fc746a2-d005-4520-aeb7-b426f9e846fd" InformativeScreenshot="9a8bd1293769c12bbaac2f27317249ab.png" Reference="yfYXtnZqw0qmjlVI7f1Jtg/RKlzYml-w0yhQGMk6Vraew" ScopeSelectorArgument="&lt;html app='chrome.exe' title='ChatGPT' /&gt;" SearchSteps="FuzzySelector" Version="V4" Visibility="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target CVScreenId="7e9cc357-633f-4610-9add-0c93f5f81836" CvElementArea="981, 568, 963, 69" CvType="InputBox" DesignTimeRectangle="1047, 588, 832, 30" FuzzySelectorArgument="&lt;webctrl tag='P' type='' class='placeholder' aaname='' /&gt;" Guid="76e7ff2f-21fd-4f2c-a427-74cf2cda0050" SearchSteps="FuzzySelector, CV" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NClick.Target>
+                      <uix:NClick.VerifyOptions>
+                        <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                          <uix:VerifyExecutionOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionOptions.Retry>
+                          <uix:VerifyExecutionOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionOptions.Timeout>
+                        </uix:VerifyExecutionOptions>
+                      </uix:NClick.VerifyOptions>
+                    </uix:NClick>
+                    <uix:NClick ActivateBefore="{x:Null}" ClickType="Single" DisplayName="Click 'Conectarse con Google D…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="382.4,225.6" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="c6630d01-746e-4d50-a4bc-9e1920016130" Version="V4">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="https://chatgpt.com/?model=auto" CVScreenId="6b80fb72-acef-4c8d-b4a6-544e3a96e6b5" ContentHash="n-sDibDRSkS4hfHCWXJRrw" CvTextArea="1035, 739, 254, 22" CvTextArgument="+ Cargar desde la computadora" CvType="Text" DesignTimeRectangle="1008, 720, 403, 55" DesignTimeScaleFactor="1.25" FuzzySelectorArgument="&lt;webctrl aaname='Cargar desde la computadora' aria-role='menuitem' tag='DIV' type='' class='flex items-center m-1.5 p-2.5 text-sm cursor-pointer focus-visible:outline-0 radix-disabled:pointer-events-none radix-disabled:opacity-50 group relative hover:bg-[#f5f5f5] focus-visible:bg-[#f5f5f5] radix-state-open:bg-[#f5f5f5] dark:hover:bg-token-main-surface-secondary dark:focus-visible:bg-token-main-surface-secondary rounded-md my-0 px-3 mx-2 dark:radix-state-open:bg-token-main-surface-secondary gap-2.5 py-3' check:innerText='Cargar desde la computadora' /&gt;" Guid="d36bfd14-f046-47ba-8a38-7901921811f9" InformativeScreenshot="dfcfea6cdc726189b0bb3f85df415c94.png" Reference="yfYXtnZqw0qmjlVI7f1Jtg/TybsCN2hnESeFv_wBguGXw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='ChatGPT' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                      </uix:NClick.Target>
+                      <uix:NClick.VerifyOptions>
+                        <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                          <uix:VerifyExecutionOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionOptions.Retry>
+                          <uix:VerifyExecutionOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionOptions.Timeout>
+                        </uix:VerifyExecutionOptions>
+                      </uix:NClick.VerifyOptions>
+                    </uix:NClick>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'Edit'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="382.4,286.4" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="Simulate" ScopeIdentifier="c6630d01-746e-4d50-a4bc-9e1920016130" Text="[in_FilePath]" Version="V4">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable BrowserURL="https://chatgpt.com/?model=auto" CVScreenId="73513f45-9f10-4551-b2c6-1bd996b64bba" ContentHash="0TSehJjNy0GDlWVZsDjriw" CvElementArea="293, 504, 718, 32" CvType="InputBox" DesignTimeRectangle="298, 511, 689, 20" DesignTimeScaleFactor="1.25" ElementType="InputBox" FullSelectorArgument="&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;" Guid="98ff10cd-e35c-44ed-ab7e-bd7311efb97c" InformativeScreenshot="e1267380a309cad809ce3fa859581809.png" Reference="yfYXtnZqw0qmjlVI7f1Jtg/LCAs4-4SGkefVnNe9nsTVA" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='#32770' title='Abrir' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                      </uix:NTypeInto.Target>
+                      <uix:NTypeInto.VerifyOptions>
+                        <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                          <uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionTypeIntoOptions.Retry>
+                          <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        </uix:VerifyExecutionTypeIntoOptions>
+                      </uix:NTypeInto.VerifyOptions>
+                    </uix:NTypeInto>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '&amp;Abrir'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="382.4,218.4" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="c6630d01-746e-4d50-a4bc-9e1920016130" Version="V4">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="https://chatgpt.com/?model=auto" CVScreenId="73513f45-9f10-4551-b2c6-1bd996b64bba" ContentHash="TBJdIeo1Ok6OxTK2kUoq1g" CvElementArea="1024, 541, 112, 34" CvTextArea="1061, 550, 36, 15" CvTextArgument="Abrir" CvType="Button" DesignTimeRectangle="1026, 543, 110, 33" DesignTimeScaleFactor="1.25" ElementType="Button" FullSelectorArgument="&lt;wnd ctrlid='1' title='&amp;amp;Abrir' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1' title='&amp;amp;Abrir' check:text='&amp;amp;Abrir' /&gt;" Guid="1d116340-17ab-4fe7-b385-75e7a3a1988f" InformativeScreenshot="a04e27071316ad4d872df00d2bb1b039.png" Reference="yfYXtnZqw0qmjlVI7f1Jtg/RI-I4OHb50Sn7PzgxqHnuA" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='#32770' title='Abrir' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target CVScreenId="73513f45-9f10-4551-b2c6-1bd996b64bba" CvTextArea="155, 512, 133, 15" CvTextArgument="Nombre de archivo:" CvType="Text" DesignTimeRectangle="157, 511, 131, 20" ElementType="Text" FullSelectorArgument="&lt;wnd ctrlid='1090' title='&amp;amp;Nombre de archivo:' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1090' title='&amp;amp;Nombre de archivo:' check:text='&amp;amp;Nombre de archivo:' /&gt;" Guid="b8f7298b-aeaa-43c2-b53f-615b285276cd" SearchSteps="Selector, FuzzySelector, CV" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NClick.Target>
+                      <uix:NClick.VerifyOptions>
+                        <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                          <uix:VerifyExecutionOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionOptions.Retry>
+                          <uix:VerifyExecutionOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionOptions.Timeout>
+                        </uix:VerifyExecutionOptions>
+                      </uix:NClick.VerifyOptions>
+                    </uix:NClick>
+                  </Sequence>
+                </ActivityAction>
+              </uix:NApplicationCard.Body>
+              <uix:NApplicationCard.TargetApp>
+                <uix:TargetApp Area="-9, -9, 2598, 1038" BrowserType="Chrome" ContentHash="sdd6sBWh-EmGpWBOygNUtA" IconBase64="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" InformativeScreenshot="e6d971af497d53e83b4ba91598ef4a44.jpg" Reference="yfYXtnZqw0qmjlVI7f1Jtg/brbXoJCABUmKAbzFr32hkA" Selector="&lt;html app='chrome.exe' title='ChatGPT' /&gt;" Url="https://chatgpt.com/*" />
+              </uix:NApplicationCard.TargetApp>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NApplicationCard>
+          </Sequence>
+        </ui:CommentOut.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:CommentOut>
+    </Sequence>
+  </Sequence>
+</Activity>

@@ -1,0 +1,93 @@
+# === Archivos de usuario de UiPath Studio ===
+*.local
+*.user
+*.settings
+*.screenshots
+*.suo
+*.orig
+
+# === Archivos y carpetas temporales ===
+.project.json.backup
+project.lock.json
+*.nupkg
+.nuget/
+.tmh/
+.storage/
+.templates/
+.entities/
+.objects/
+.vs/
+.idea/
+
+# === Archivos del sistema operativo ===
+Thumbs.db
+.DS_Store
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# === Archivos temporales y basura general ===
+~$*
+*.tmp
+*.bak
+*.backup
+*.cache
+*.log
+
+# === Carpetas que no necesitas versionar (generadas o usadas en runtime) ===
+Exceptions_Screenshots/**
+Tests/
+Screenshots/**
+output/
+publish/
+logs/
+TestResults/
+PerformanceResults/
+Temp/**
+
+
+# === Específicos de UiPath: incluye lo necesario y excluye lo demás ===
+
+# Framework, Modules y otros: incluir solo .xaml y archivos de datos necesarios
+Framework/**/* 
+!Framework/**/*.xaml
+!Framework/**/*.json
+!Framework/**/*.csv
+!Framework/**/*.txt
+
+
+!Modules/LinkedIn/ 
+!Modules/**/*.xaml
+!Modules/**/*.json
+!Modules/**/*.csv
+!Modules/**/*.txt
+
+
+Data/Input/**
+Data/Output/**
+Data/Temp/**
+
+!Data/Templates/*.docx
+!Data/Templates/*.xlsx
+
+Documentation/**/* 
+!Documentation/**/*.md
+!Documentation/**/*.txt
+!Documentation/**/*.pdf
+
+# Input folder si es solo para pruebas locales
+!Data/Input/
+!Data/Output/
+!Data/Temp/
+
+# Excepciones adicionales para permitir archivos raíz importantes
+!.gitignore
+!README.md
+!LICENSE
+!project.json
+!Main.xaml
+
+
+# Config files (si usas uno central)
+!Config.xlsx
+!UserSettings.xlsx

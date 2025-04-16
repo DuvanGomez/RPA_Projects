@@ -1,0 +1,9 @@
+{
+  "Tags": [
+    {
+      "Key": "Studio"
+    }
+  ],
+  "SeparateRuntimeDependencies": true,
+  "IncludeSources": true
+}
